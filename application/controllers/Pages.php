@@ -9,74 +9,42 @@ class Pages extends CI_Controller
 		$this->load->model('Login_Model');
 		$this->load->helper('form');
 		$this->load->library('session');
+		$this->load->model('login_model');
 	}
-
 	public function index()
 	{
-		$this->load->view('login_view');
-
-//		if ($this->session->get_userdata('user')) {
-//			$data['users'] = $this->User_Model->view_users();
-//			$this->load->view('User_view', $data);
-//		} else {
-//			$this->load->view('login_view');
-//		}
+		if($this->session->userdata('user_details')){
+			$data['users'] = $this->User_Model->view_users();
+			$this->load->view('User_view', $data);
+		}else{
+			$this->load->view('login_view');
+		}
 	}
 	public function process(){
-		$this->load->model('login_model');
-		$result = $this->Login_Model->validate();
-		if(! $result){
-			$this->load->view('login_view');
+		$name = $this->security->xss_clean($this->input->post('name'));
+		$password = $this->security->xss_clean($this->input->post('password'));
+
+		$result = $this->Login_Model->validate($name, $password);
+		if(!$result){
+			redirect('pages/login_view');
 		}else{
+			$this->session->set_userdata('user_details', $result);
 			$data['users'] = $this->User_Model->view_users();
 			$this->load->view('User_view', $data);
 		}
 	}
+	function user_logout(){
+		if ($this->session->userdata('user_details')){
+			$this->session->unset_userdata('user_details');
+			redirect(base_url("pages/login_view"));
+		}else{
+			redirect(base_url("pages/login_view"));
+		}
+	}
+	function login_view(){
+		$this->load->view("login_view");
+	}
 
-//		$this->load->library('form_validation');
-//		$this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-//		$this->form_validation->set_rules('name', 'name', 'trim|required|callback_userCorrect');
-//		$this->form_validation->set_rules('password', 'password', 'trim|required|callback_passwordCorrect');
-//
-//		$name = $this->input->post('name');
-//		$password = $this->input->post('password');
-//
-//		if ($this->form_validation->run() == FALSE) {
-//			$this->load->view('login_view');
-//		} else {
-//
-//			function userCorrect($name)
-//			{
-//				$this->load->library('form_validation');
-//				$userExists = $this->Login_Model->userExists($name);
-//
-//				if ($userExists) {
-//					$this->form_validation->set_message(
-//						'userCorrect', 'correct user.'
-//					);
-//					return true;
-//				} else {
-//					$this->form_validation->set_message(
-//						'userCorrect', 'not a valid user name.'
-//					);
-//					return false;
-//				}
-//			}
-//		}
-//	}
-//	function passwordCorrect($password) {
-//		$this->load->library('form_validation');
-//		$passwordExists = $this->Login_Model->passwordCorrect($password);
-//
-//		if ($passwordExists) {
-//			$this->form_validation->set_message('passwordCorrect', 'correct password.');
-//			return true;
-//		} else {
-//			$this->form_validation->set_message('passwordCorrect', 'invalid password.');
-//			return false;
-//		}
-//	}
-//this is my code........
 	public function create_user(){
 		$this->load->view('registration');
 	}

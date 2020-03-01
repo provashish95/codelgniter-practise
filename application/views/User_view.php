@@ -42,6 +42,9 @@
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 						<a class="navbar-brand" href="<?php echo base_url('pages/create_user');?>">Add Users</a>
+					</ul>
+					<ul class="navbar-nav mr-auto">
+						<a class="navbar-brand" href="<?php echo base_url('pages/user_logout');?>">Log Out</a>
 						<a class="navbar-brand" href="#">Product</a>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
