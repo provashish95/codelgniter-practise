@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>User Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -25,6 +24,9 @@
 			width: 100%;
 			left: 10px;
 		}
+		.form-control{
+			width: 50%!important;
+		}
 	</style>
 </head>
 <body>
@@ -34,17 +36,13 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Products</a>
-				<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
+				<a class="navbar-brand" href="#">Home</a>
+				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Product</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="<?php echo base_url('users/create_user');?>">Add Users</a>
-					</ul>
-					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="<?php echo base_url('users/user_logout');?>">Log Out</a>
 						<a class="navbar-brand" href="#">Product</a>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
@@ -57,40 +55,46 @@
 		</div>
 		<div class="row">
 			<div class="card" style="width: 100%; margin: 20px;">
+				<div class="card-body">
 					<div class="row">
 						<div class="col-md-2">
 						</div>
 						<div class="col-md-8">
+							<?php
+							$i=1;
+							foreach($data as $row)
+							{
+							?>
 							<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
-							<table class="table">
-								<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Email</th>
-									<th scope="col">Password</th>
-									<th scope="col">Action</th>
-								</tr>
-								</thead>
-								<tbody>
-								<?php
-								$i = 1;
-								foreach($users as $row) {  ?>
-								<tr>
-									<th scope="row"><?php echo $row->id ;?></th>
-									<td><?php echo $row->name ;?></td>
-									<td><?php echo $row->email ;?></td>
-									<td><?php echo $row->password ;?></td>
-									<td><a href='<?php echo base_url('users/delete_row/'.$row->id) ;?>'>Delete</a></td>
-									<td><a href='<?php echo base_url('users/update_data/'.$row->id) ;?>'>Update</a></td>
-								</tr>
-								<?php }?>
-								</tbody>
-							</table>
+							<form action="#" method="post">
+								<div class="form-group">
+									<label for="exampleInputEmail1">Product Name</label>
+									<input type="text" class="form-control" value="<?php echo $row->name ;?>" name="name" aria-describedby="emailHelp" required>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Product Price</label>
+									<input type="number" class="form-control" name="price"  value="<?php echo $row->price ;?>" required>
+								</div>
+								<div class="form-group">
+									<label for="exampleFormControlTextarea1">Description</label>
+									<textarea class="form-control" name="description"  rows="3"><?php echo $row->description ;?></textarea>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Tag</label>
+									<input type="text" class="form-control" name="tag" value="<?php echo $row->tag ;?>" required>
+								</div>
+								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
+							</form>
+								<script type="text/javascript">
 
+									$(document).ready(function(){
+										tinymce.init({selector:'textarea'});
+									});
+								</script>
+							<?php }?>
 
 						</div>
 						<div class="col-md-2">
@@ -114,3 +118,4 @@
 </div>
 </body>
 </html>
+

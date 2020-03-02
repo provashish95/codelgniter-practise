@@ -29,7 +29,7 @@ class Users extends CI_Controller
 			redirect('users/login_view');
 		}else{
 			$this->session->set_userdata('user_details', $result);
-			$this->session->set_flashdata('user_success', 'Your are login !!');
+			$this->session->set_flashdata('user_success', 'You are Login !!');
 			$data['users'] = $this->User_Model->view_users();
 			$this->load->view('user_view', $data);
 		}
@@ -39,7 +39,7 @@ class Users extends CI_Controller
 		if ($this->session->userdata('user_details')){
 
 			$this->session->unset_userdata('user_details');
-			$this->session->set_flashdata('user_success', 'Your are log out !!');
+			$this->session->set_flashdata('user_success', 'You are Logout !!');
 			redirect(base_url("users/login_view"));
 
 		}else{
@@ -70,7 +70,7 @@ class Users extends CI_Controller
 		$result['data']=$this->User_Model->display_userById($id);
 		$this->load->view('update_users',$result);
 
-		if($this->input->post('update'))
+		if($this->input->post('submit'))
 		{
 			$name=$this->input->post('name');
 			$email=$this->input->post('email');

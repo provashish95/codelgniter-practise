@@ -24,6 +24,9 @@
 			width: 100%;
 			left: 10px;
 		}
+		.alert-success{
+			width: 41%!important;
+		}
 	</style>
 </head>
 <body>
@@ -69,7 +72,7 @@
 							{
 							?>
 								<?php if ($this->session->flashdata('user_success')) { ?>
-								<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
+								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 							<form action="#" method="post">
 								<div class="form-group">
@@ -84,7 +87,7 @@
 									<label for="exampleInputPassword1">Password</label>
 									<input type="password" class="form-control" name="password" value="<?php echo $row->password ;?>" required>
 								</div>
-								<button type="submit" class="btn btn-primary" value="update" name="update">Update</button>
+								<button type="submit" class="btn btn-primary" value="submit" name="submit">Update</button>
 							</form>
 							<?php }?>
 						</div>

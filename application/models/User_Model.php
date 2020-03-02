@@ -7,9 +7,8 @@ class User_Model extends CI_Model
 	}
 	function add_user($data)
 	{
-		if ($this->db->insert("user_login", $data)) {
-			return true;
-		}
+		$this->db->insert("user_login", $data);
+		return true;
 	}
 	function display_userById($id)
 	{

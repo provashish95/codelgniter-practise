@@ -34,14 +34,14 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Products</a>
+				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">Home</a>
 				<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="<?php echo base_url('users/create_user');?>">Add Users</a>
+						<a class="navbar-brand" href="<?php echo base_url('product/product_create');?>">Add Product</a>
 					</ul>
 					<ul class="navbar-nav mr-auto">
 						<a class="navbar-brand" href="<?php echo base_url('users/user_logout');?>">Log Out</a>
@@ -57,50 +57,51 @@
 		</div>
 		<div class="row">
 			<div class="card" style="width: 100%; margin: 20px;">
-					<div class="row">
-						<div class="col-md-2">
-						</div>
-						<div class="col-md-8">
-							<?php if ($this->session->flashdata('user_success')) { ?>
-								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
-							<?php } ?>
-
-							<table class="table">
-								<thead>
-								<tr>
-									<th scope="col">ID</th>
-									<th scope="col">Name</th>
-									<th scope="col">Email</th>
-									<th scope="col">Password</th>
-									<th scope="col">Action</th>
-								</tr>
-								</thead>
-								<tbody>
-								<?php
-								$i = 1;
-								foreach($users as $row) {  ?>
+				<div class="row">
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-8">
+						<?php if ($this->session->flashdata('user_success')) { ?>
+							<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
+						<?php } ?>
+						<table class="table">
+							<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Name</th>
+								<th scope="col">price</th>
+								<th scope="col">Description</th>
+								<th scope="col">Tag</th>
+								<th scope="col">Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$i = 1;
+							foreach($users as $row) {  ?>
 								<tr>
 									<th scope="row"><?php echo $row->id ;?></th>
 									<td><?php echo $row->name ;?></td>
-									<td><?php echo $row->email ;?></td>
-									<td><?php echo $row->password ;?></td>
-									<td><a href='<?php echo base_url('users/delete_row/'.$row->id) ;?>'>Delete</a></td>
-									<td><a href='<?php echo base_url('users/update_data/'.$row->id) ;?>'>Update</a></td>
+									<td><?php echo $row->price ;?></td>
+									<td><?php echo $row->description ;?></td>
+									<td><?php echo $row->tag ;?></td>
+									<td><a href='<?php echo base_url('product/delete_product/'.$row->id) ;?>'>Delete</a></td>
+									<td><a href='<?php echo base_url('product/update_product/'.$row->id) ;?>'>Update</a></td>
 								</tr>
-								<?php }?>
-								</tbody>
-							</table>
+							<?php }?>
+							</tbody>
+						</table>
 
 
-						</div>
-						<div class="col-md-2">
+					</div>
+					<div class="col-md-2">
 
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <footer>
 	<div class="footer">
