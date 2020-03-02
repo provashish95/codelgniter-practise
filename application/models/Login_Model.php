@@ -8,7 +8,7 @@ class Login_Model extends CI_Model {
 	}
 
 	public function validate($name, $password){
-		$query =$this->db->query("select * from user_login where name='".$name."' and password='$password'");
+		$query =$this->db->query("select * from user_login where name ='".$name."' and password='$password'");
 		return $query->result();
 	}
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>User Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -34,13 +34,12 @@
 <!--		nav bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
 			<a class="navbar-brand" href="#">Home</a>
-			<a class="navbar-brand" href="<?php echo base_url('pages');  ?>">Show Users</a>
+			<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<a class="navbar-brand" href="#">Product</a>
 					<a class="navbar-brand" href="#">Product</a>
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
@@ -59,7 +58,7 @@
 						   </div>
 					   <div class="col-md-8">
 
-					   <form action="<?php echo base_url('pages/add_user');?>" method="post">
+					   <form action="<?php echo base_url('users/add_user');?>" method="post">
 						   <div class="form-group">
 							   <label for="exampleInputEmail1">Name</label>
 							   <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>

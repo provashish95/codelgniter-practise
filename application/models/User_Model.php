@@ -21,12 +21,12 @@ class User_Model extends CI_Model
 		$query=$this->db->query("update user_login SET name='$name',email='$email',password='$password' where id='$id'");
 
 	}
-	function delete_user($id){
-		// $this->db->query("delete  from test where id='$id'");
-		$this->db->where('id', $id);
-		$this->db->delete('user_login');
+
+	function row_delete($id)
+	{
+//		$this->db->where('id', $id);
+//     	$this->db->delete('user_login');
+
+		$this->db->delete("user_login", "id = $id");
 	}
-
-
-
 }

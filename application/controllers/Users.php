@@ -1,5 +1,5 @@
 <?php
-class Pages extends CI_Controller
+class Users extends CI_Controller
 {
 	function __construct() {
 		parent::__construct();
@@ -9,44 +9,48 @@ class Pages extends CI_Controller
 		$this->load->model('Login_Model');
 		$this->load->helper('form');
 		$this->load->library('session');
-		$this->load->model('login_model');
 	}
 	public function index()
 	{
 		if($this->session->userdata('user_details')){
 			$data['users'] = $this->User_Model->view_users();
-			$this->load->view('User_view', $data);
+			$this->load->view('user_view', $data);
 		}else{
 			$this->load->view('login_view');
 		}
 	}
-	public function process(){
-		$name = $this->security->xss_clean($this->input->post('name'));
-		$password = $this->security->xss_clean($this->input->post('password'));
+	public function login_action(){
+		$name = $this->input->post('name');
+		$password = $this->input->post('password');
 
 		$result = $this->Login_Model->validate($name, $password);
 		if(!$result){
-			redirect('pages/login_view');
+			redirect('users/login_view');
 		}else{
 			$this->session->set_userdata('user_details', $result);
 			$data['users'] = $this->User_Model->view_users();
-			$this->load->view('User_view', $data);
+			$this->load->view('user_view', $data);
 		}
 	}
 	function user_logout(){
+
 		if ($this->session->userdata('user_details')){
+
 			$this->session->unset_userdata('user_details');
-			redirect(base_url("pages/login_view"));
+			redirect(base_url("users/login_view"));
+
 		}else{
-			redirect(base_url("pages/login_view"));
+
+			redirect(base_url("users/login_view"));
 		}
 	}
+
 	function login_view(){
 		$this->load->view("login_view");
 	}
 
 	public function create_user(){
-		$this->load->view('registration');
+		$this->load->view('add_users');
 	}
 	public function add_user() {
 		$data = array(
@@ -56,15 +60,12 @@ class Pages extends CI_Controller
 		);
 		$this->User_Model->add_user($data);
 		$this->session->set_flashdata('user_success', 'User Add Successfully.');
-		redirect('pages','refresh');
-
-
-
+		redirect('users','refresh');
 	}
 	public function update_data($id)
 	{
 		$result['data']=$this->User_Model->display_userById($id);
-		$this->load->view('update_records',$result);
+		$this->load->view('update_users',$result);
 
 		if($this->input->post('update'))
 		{
@@ -73,15 +74,13 @@ class Pages extends CI_Controller
 			$password=$this->input->post('password');
 			$this->User_Model->update_records($name,$email,$password,$id);
 			$this->session->set_flashdata('user_success', 'User has been update Successfully.');
-			redirect('pages','refresh');
+			redirect('users','refresh');
 		}
 
 	}
-	public function delete_data(){
-		$id=$this->input->get('id');
-		$this->User_Model->delete_user($id);
-
-		$this->session->set_flashdata('user_success', 'User has been Deleted Successfully.');
-		redirect('pages','refresh');
-	}
+    public function delete_row($id){
+	    $this->User_Model->row_delete($id);
+	    $this->session->set_flashdata('user_success', 'User has been Deleted Successfully.');
+	    redirect('users','refresh');
+        }
 }
