@@ -25,9 +25,11 @@ class Users extends CI_Controller
 
 		$result = $this->Login_Model->validate($name, $password);
 		if(!$result){
+			$this->session->set_flashdata('user_success', 'Your name or password is not correct');
 			redirect('users/login_view');
 		}else{
 			$this->session->set_userdata('user_details', $result);
+			$this->session->set_flashdata('user_success', 'Your are login !!');
 			$data['users'] = $this->User_Model->view_users();
 			$this->load->view('user_view', $data);
 		}
@@ -37,6 +39,7 @@ class Users extends CI_Controller
 		if ($this->session->userdata('user_details')){
 
 			$this->session->unset_userdata('user_details');
+			$this->session->set_flashdata('user_success', 'Your are log out !!');
 			redirect(base_url("users/login_view"));
 
 		}else{
@@ -75,6 +78,7 @@ class Users extends CI_Controller
 			$this->User_Model->update_records($name,$email,$password,$id);
 			$this->session->set_flashdata('user_success', 'User has been update Successfully.');
 			redirect('users','refresh');
+
 		}
 
 	}
