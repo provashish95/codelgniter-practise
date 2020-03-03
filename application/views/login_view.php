@@ -24,6 +24,10 @@
 			width: 100%;
 			left: 10px;
 		}
+		.alert-success{
+			width: 41%!important;
+			margin-left: 30%;
+		}
 	</style>
 </head>
 <body>
@@ -55,17 +59,21 @@
 								<?php if ($this->session->flashdata('user_success')) { ?>
 									<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
 								<?php } ?>
+								<div style="margin-left: 30%;">
 								<form action='<?php echo base_url();?>users/login_action' method='post'>
 									<h2>User Login</h2>
 									<br />
-									<label for='username'>Username</label>
-									<input type='text' name='name' id='name' size='25' placeholder="Enter Username" required /><br />
-
-									<label for='password'>Password</label>
+									<div class="form-group">
+									<label for='username'>Username:</label>
+									<input type='text' name='name'  id='name' size='25' placeholder="Enter Username" required /><br />
+									</div>
+									<div class="form-group">
+									<label for='exampleInputPassword1'>Password :</label>
 									<input type='password' name='password' id='password' size='25' placeholder="Enter your password" required /><br />
-
+									</div>
 									<input type='Submit' value='Login' />
 								</form>
+								</div>
 							</div>
 
 

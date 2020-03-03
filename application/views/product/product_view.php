@@ -43,10 +43,7 @@
 					<ul class="navbar-nav mr-auto">
 						<a class="navbar-brand" href="<?php echo base_url('product/product_create');?>">Add Product</a>
 					</ul>
-					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="<?php echo base_url('users/user_logout');?>">Log Out</a>
-						<a class="navbar-brand" href="#">Product</a>
-					</ul>
+
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
 						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -106,8 +103,8 @@
 <footer>
 	<div class="footer">
 		<div class="card">
-			<div class="card-header">
-				Quote
+			<div class="card-header" style="margin-left: 85%;">
+				<a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
 			</div>
 		</div>
 	</div>

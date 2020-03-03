@@ -38,9 +38,10 @@
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+				<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="#">Product</a>
+
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -65,7 +66,7 @@
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Product Price</label>
-									<input type="number" class="form-control" name="price" id="exampleInputPassword1" required>
+									<input type="number" class="form-control" name="price"  required>
 								</div>
 								<div class="form-group">
 									<label for="exampleFormControlTextarea1">Description</label>
@@ -74,9 +75,9 @@
 
 								<div class="form-group">
 									<label for="exampleInputPassword1">Tag</label>
-									<input type="text" class="form-control" name="tag" id="exampleInputPassword1" required>
+									<input type="text" class="form-control" name="tag"  required>
 								</div>
-<!--
+
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 							</form>
 
@@ -93,8 +94,8 @@
 <footer>
 	<div class="footer">
 		<div class="card">
-			<div class="card-header">
-				Quote
+			<div class="card-header" style="margin-left: 85%;">
+				<a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
 			</div>
 		</div>
 	</div>

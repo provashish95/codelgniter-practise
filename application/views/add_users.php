@@ -40,7 +40,7 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<a class="navbar-brand" href="#">Product</a>
+<!--					<a class="navbar-brand" href="#">Product</a>-->
 				</ul>
 				<form class="form-inline my-2 my-lg-0">
 					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -87,8 +87,8 @@
        <footer>
 		  <div class="footer">
 			  <div class="card">
-				  <div class="card-header">
-					  Quote
+				  <div class="card-header" style="margin-left: 85%;">
+					  <a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
 				  </div>
 			  </div>
 		  </div>

@@ -4,6 +4,9 @@ class Product extends CI_Controller{
 		parent::__construct();
 		$this->load->helper('url');
 		$this->load->model('Product_model');
+		$this->load->database();
+		$this->load->helper('form');
+		$this->load->library('session');
 	}
 
 	public function index(){

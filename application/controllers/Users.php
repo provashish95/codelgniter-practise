@@ -25,7 +25,7 @@ class Users extends CI_Controller
 
 		$result = $this->Login_Model->validate($name, $password);
 		if(!$result){
-			$this->session->set_flashdata('user_success', 'Your name or password is not correct');
+			$this->session->set_flashdata('user_success', 'Your username or password incorrect');
 			redirect('users/login_view');
 		}else{
 			$this->session->set_userdata('user_details', $result);
