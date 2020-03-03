@@ -79,8 +79,8 @@
 									<td><?php echo $row->name ;?></td>
 									<td><?php echo $row->email ;?></td>
 									<td><?php echo $row->password ;?></td>
-									<td><a href='<?php echo base_url('users/delete_row/'.$row->id) ;?>'>Delete</a></td>
-									<td><a href='<?php echo base_url('users/update_data/'.$row->id) ;?>'>Update</a></td>
+									<td><a href='<?php echo base_url('users/delete_user/'.$row->id) ;?>'>Delete</a></td>
+									<td><a href='<?php echo base_url('users/view_update_user/'.$row->id) ;?>'>Update</a></td>
 								</tr>
 								<?php }?>
 								</tbody>

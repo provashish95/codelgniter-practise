@@ -9,9 +9,9 @@ class Product_model extends CI_Model{
 		$this->db->insert("product_table", $data);
 		return true;
 	}
-	public function display_productById($id){
+	public function view_product_by_id($id){
 		$query=$this->db->query("select * from product_table where id='$id'");
-		return $query->result();
+		return $query->row();
 	}
 	public function update_product($name,$price,$description,$tag,$id){
 		$query=$this->db->query("update product_table SET name='$name',price='$price',description='$description',tag='$tag' where id='$id'");

@@ -66,30 +66,28 @@
 
 						</div>
 						<div class="col-md-8">
-							<?php
-							$i=1;
-							foreach($data as $row)
-							{
-							?>
+
 								<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
-							<form action="#" method="post">
+
+							<form action="<?= base_url('users/update_user')?>" method="post">
+								<input type="hidden"  name="id" value="<?=  $user->id ?>">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Name</label>
-									<input type="text" class="form-control" name="name"  value="<?php echo $row->name ;?>" required>
+									<input type="text" class="form-control" name="name"  value="<?=  $user->name ?>" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Email</label>
-									<input type="email" class="form-control" name="email" value="<?php echo $row->email ;?>" required>
+									<input type="email" class="form-control" name="email" value="<?= $user->email ?>" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" name="password" value="<?php echo $row->password ;?>" required>
+									<input type="password" class="form-control" name="password" value="<?= $user->password ?>" required>
 								</div>
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Update</button>
 							</form>
-							<?php }?>
+
 						</div>
 						<div class="col-md-2">
 

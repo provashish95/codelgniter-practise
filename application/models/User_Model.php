@@ -10,18 +10,17 @@ class User_Model extends CI_Model
 		$this->db->insert("user_login", $data);
 		return true;
 	}
-	function display_userById($id)
+	function display_user_by_id($id)
 	{
-		$query=$this->db->query("select * from user_login where id='$id'");
-		return $query->result();
+		$query = $this->db->query("select * from user_login where id='$id'");
+		return $query->row();
 
 	}
-	function update_records($name,$email,$password,$id){
+	function update_user($name,$email,$password,$id){
 		$query=$this->db->query("update user_login SET name='$name',email='$email',password='$password' where id='$id'");
-
 	}
 
-	function row_delete($id)
+	function user_delete($id)
 	{
 //		$this->db->where('id', $id);
 //     	$this->db->delete('user_login');

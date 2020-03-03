@@ -60,31 +60,28 @@
 						<div class="col-md-2">
 						</div>
 						<div class="col-md-8">
-							<?php
-							$i=1;
-							foreach($data as $row)
-							{
-							?>
+
 							<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
-							<form action="#" method="post">
+							<form action="<?= base_url('product/update_product')?>" method="post">
+								<input type="hidden"  name="id" value="<?=  $product->id ?>">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Product Name</label>
-									<input type="text" class="form-control" value="<?php echo $row->name ;?>" name="name" aria-describedby="emailHelp" required>
+									<input type="text" class="form-control" value="<?=  $product->name ?>" name="name" aria-describedby="emailHelp" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Product Price</label>
-									<input type="number" class="form-control" name="price"  value="<?php echo $row->price ;?>" required>
+									<input type="number" class="form-control" name="price"  value="<?=  $product->price ?>" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleFormControlTextarea1">Description</label>
-									<textarea class="form-control" name="description"  rows="3"><?php echo $row->description ;?></textarea>
+									<textarea class="form-control" name="description"  rows="3"><?=  $product->description ?></textarea>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Tag</label>
-									<input type="text" class="form-control" name="tag" value="<?php echo $row->tag ;?>" required>
+									<input type="text" class="form-control" name="tag" value="<?=  $product->tag ?>" required>
 								</div>
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 							</form>
@@ -94,7 +91,6 @@
 										tinymce.init({selector:'textarea'});
 									});
 								</script>
-							<?php }?>
 
 						</div>
 						<div class="col-md-2">
@@ -110,7 +106,7 @@
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
+				<a  href="<?= base_url('users/user_logout') ?>">Log Out</a>
 			</div>
 		</div>
 	</div>

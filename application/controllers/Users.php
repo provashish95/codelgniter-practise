@@ -14,7 +14,7 @@ class Users extends CI_Controller
 	{
 		if($this->session->userdata('user_details')){
 			$data['users'] = $this->User_Model->view_users();
-			$this->load->view('user_view', $data);
+			$this->load->view('user/user_view', $data);
 		}else{
 			$this->load->view('login_view');
 		}
@@ -31,7 +31,7 @@ class Users extends CI_Controller
 			$this->session->set_userdata('user_details', $result);
 			$this->session->set_flashdata('user_success', 'You are Login !!');
 			$data['users'] = $this->User_Model->view_users();
-			$this->load->view('user_view', $data);
+			$this->load->view('user/user_view', $data);
 		}
 	}
 	function user_logout(){
@@ -53,7 +53,7 @@ class Users extends CI_Controller
 	}
 
 	public function create_user(){
-		$this->load->view('add_users');
+		$this->load->view('user/add_users');
 	}
 	public function add_user() {
 		$data = array(
@@ -63,28 +63,28 @@ class Users extends CI_Controller
 		);
 		$this->User_Model->add_user($data);
 		$this->session->set_flashdata('user_success', 'User Add Successfully.');
-		redirect('users','refresh');
+		redirect('users');
 	}
-	public function update_data($id)
+	public function view_update_user($id){
+		$this->data['user']=$this->User_Model->display_user_by_id($id);
+		$this->load->view('user/update_user',$this->data);
+	}
+	public function update_user()
 	{
-		$result['data']=$this->User_Model->display_userById($id);
-		$this->load->view('update_users',$result);
-
 		if($this->input->post('submit'))
 		{
+			$id=$this->input->post('id');
 			$name=$this->input->post('name');
 			$email=$this->input->post('email');
 			$password=$this->input->post('password');
-			$this->User_Model->update_records($name,$email,$password,$id);
+			$this->User_Model->update_user($name,$email,$password,$id);
 			$this->session->set_flashdata('user_success', 'User has been update Successfully.');
-			redirect('users','refresh');
-
+			redirect('users');
 		}
-
 	}
-    public function delete_row($id){
-	    $this->User_Model->row_delete($id);
+    public function delete_user($id){
+	    $this->User_Model->user_delete($id);
 	    $this->session->set_flashdata('user_success', 'User has been Deleted Successfully.');
-	    redirect('users','refresh');
+	    redirect('users');
         }
 }

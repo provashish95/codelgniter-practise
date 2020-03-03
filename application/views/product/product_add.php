@@ -95,7 +95,7 @@
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
+				<a  href="<?= base_url('users/user_logout') ?>">Log Out</a>
 			</div>
 		</div>
 	</div>
