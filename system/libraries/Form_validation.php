@@ -749,7 +749,7 @@ class CI_Form_validation {
 			elseif ( ! method_exists($this, $rule))
 			{
 				// If our own wrapper function doesn't exist we see if a native PHP function does.
-				// Users can use any native PHP function call that has one param.
+				// Employee can use any native PHP function call that has one param.
 				if (function_exists($rule))
 				{
 					// Native PHP functions issue warnings if you pass them more parameters than they use
@@ -944,7 +944,7 @@ class CI_Form_validation {
 	/**
 	 * Set Select
 	 *
-	 * Enables pull-down lists to be set to the value the user
+	 * Enables pull-down lists to be set to the value the employee
 	 * selected in the event of an error
 	 *
 	 * @param	string
@@ -987,7 +987,7 @@ class CI_Form_validation {
 	/**
 	 * Set Radio
 	 *
-	 * Enables radio buttons to be set to the value the user
+	 * Enables radio buttons to be set to the value the employee
 	 * selected in the event of an error
 	 *
 	 * @param	string
@@ -1030,7 +1030,7 @@ class CI_Form_validation {
 	/**
 	 * Set Checkbox
 	 *
-	 * Enables checkboxes to be set to the value the user
+	 * Enables checkboxes to be set to the value the employee
 	 * selected in the event of an error
 	 *
 	 * @param	string

@@ -6,18 +6,20 @@ class Product_model extends CI_Model{
 		return $query->result();
 	}
 	public function product_add($data){
-		$this->db->insert("product_table", $data);
-		return true;
+		return $this->db->insert("product_table", $data);
+
 	}
 	public function view_product_by_id($id){
 		$query=$this->db->query("select * from product_table where id='$id'");
 		return $query->row();
 	}
 	public function update_product($name,$price,$description,$tag,$id){
-		$query=$this->db->query("update product_table SET name='$name',price='$price',description='$description',tag='$tag' where id='$id'");
 
+	 return	$query=$this->db->query("update product_table SET name='$name',price='$price',description='$description',tag='$tag' where id='$id'");
 	}
 	public function product_delete($id){
-		$this->db->delete("product_table", "id = $id");
+
+		return $this->db->delete("product_table", "id = $id");
+
 	}
 }

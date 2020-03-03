@@ -1,7 +1,8 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>User Login</title>
+	<title>Bootstrap Example</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,10 +25,6 @@
 			width: 100%;
 			left: 10px;
 		}
-		.alert-success{
-			width: 41%!important;
-			margin-left: 30%;
-		}
 	</style>
 </head>
 <body>
@@ -37,61 +34,74 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="<?= base_url('employee')  ?>">Home</a>
+				<a class="navbar-brand" href="<?= base_url('product/index')  ?>">All Products</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 					</ul>
+					<form class="form-inline my-2 my-lg-0">
+						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+					</form>
 				</div>
 			</nav>
 			<!--		nav bar -->
 		</div>
 		<div class="row">
 			<div class="card" style="width: 100%; margin: 20px;">
-				<div class="card-body">
-					<div class="row">
-						<div class="col-md-2">
-						</div>
-						<div class="col-md-8">
+				<div class="row">
+					<div class="col-md-2">
+					</div>
+					<div class="col-md-8">
+						<?php if ($this->session->flashdata('user_success')) { ?>
+							<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
+						<?php } ?>
 
-							<div id='login_form'>
-								<?php if ($this->session->flashdata('user_success')) { ?>
-									<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
-								<?php } ?>
-								<div style="margin-left: 30%;">
-								<form action='<?php echo base_url();?>users/login_action' method='post'>
-									<h2>User Login</h2>
-									<br />
-									<div class="form-group">
-									<label for='username'>Username:</label>
-									<input type='text' name='name'  id='name' size='25' placeholder="Enter Username" required /><br />
-									</div>
-									<div class="form-group">
-									<label for='exampleInputPassword1'>Password :</label>
-									<input type='password' name='password' id='password' size='25' placeholder="Enter your password" required /><br />
-									</div>
-									<input type='Submit' value='Login' />
-								</form>
-								</div>
-							</div>
+						<table class="table">
+							<thead>
+							<tr>
+								<th scope="col">ID</th>
+								<th scope="col">Name</th>
+								<th scope="col">Email</th>
+								<th scope="col">Password</th>
+								<th scope="col">Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<?php
+							$i = 1;
+							foreach($admins as $admin) {  ?>
+								<tr>
+									<th scope="row"><?php echo $admin->id ;?></th>
+									<td><?php echo $admin->name ;?></td>
+									<td><?php echo $admin->email ;?></td>
+									<td><?php echo $admin->password ;?></td>
+									<td><a href='<?= base_url('login/delete_admin/'.$admin->id) ?>'>Delete</a></td>
+									<td><a href='<?= base_url('login/view_update_admin/'.$admin->id) ?>'>Update</a></td>
+								</tr>
+							<?php }?>
+							</tbody>
+						</table>
 
 
-						</div>
-						<div class="col-md-2">
+					</div>
+					<div class="col-md-2">
 
-						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+</div>
 <footer>
 	<div class="footer">
 		<div class="card">
-			<div class="card-header">
-				Quote
+			<div class="card-header" style="margin-left: 85%;">
+				<p>roy</p>
 			</div>
 		</div>
 	</div>
@@ -99,3 +109,4 @@
 </div>
 </body>
 </html>
+

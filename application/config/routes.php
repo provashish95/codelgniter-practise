@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | so that a different class/function is called than the one
 | corresponding to the URL.
 |
-| Please see the user guide for complete details:
+| Please see the employee guide for complete details:
 |
 |	https://codeigniter.com/user_guide/general/routing.html
 |
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'users';
+$route['default_controller'] = 'login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 

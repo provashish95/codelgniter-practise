@@ -23,9 +23,14 @@ class Product extends CI_Controller{
 			'description' => $this->input->post('description'),
 			'tag' => $this->input->post('tag')
 		);
-		$this->Product_model->product_add($data);
-		$this->session->set_flashdata('user_success', 'product Add Successfully.');
-		redirect('product/index');
+		$result = $this->Product_model->product_add($data);
+		if ($result == true) {
+			$this->session->set_flashdata('user_success', 'product Add Successfully.');
+			redirect('product/index');
+		}else{
+			$this->session->set_flashdata('user_success', 'product not added.');
+			redirect('product/index');
+		}
 	}
 	public function view_update_product($id){
 		$this->data['product']=$this->Product_model->view_product_by_id($id);
@@ -41,15 +46,25 @@ class Product extends CI_Controller{
 			$price = $this->input->post('price');
 			$description = $this->input->post('description');
 			$tag = $this->input->post('tag');
-			$this->Product_model->update_product($name,$price,$description,$tag,$id);
-			$this->session->set_flashdata('user_success', 'Product has been update Successfully.');
-			redirect('product');
+			$result = $this->Product_model->update_product($name,$price,$description,$tag,$id);
+			if ($result == true){
+				$this->session->set_flashdata('user_success', 'Product has been update Successfully.');
+				redirect('product');
+			}else{
+				$this->session->set_flashdata('user_success', 'Product not updated.');
+				redirect('product');
+			}
 		}
 	}
 	public function delete_product($id){
-		$this->Product_model->product_delete($id);
-		$this->session->set_flashdata('user_success', 'User has been Deleted Successfully.');
-		redirect('product');
+		if ($result = $this->Product_model->product_delete($id)){
+			$this->session->set_flashdata('user_success', 'Product has been Deleted Successfully.');
+			redirect('product');
+		}else{
+			$this->session->set_flashdata('user_success', 'Product not Deleted.');
+			redirect('product');
+		}
+
 	}
 
 }

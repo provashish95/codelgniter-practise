@@ -33,8 +33,7 @@
     <div class="header">
 <!--		nav bar-->
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#">Home</a>
-			<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
+			<a class="navbar-brand" href="<?= base_url('employee')  ?>">Home</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -58,7 +57,7 @@
 						   </div>
 					   <div class="col-md-8">
 
-					   <form action="<?php echo base_url('users/add_user');?>" method="post">
+					   <form action="<?= base_url('employee/add_employee') ?>" method="post">
 						   <div class="form-group">
 							   <label for="exampleInputEmail1">Name</label>
 							   <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
@@ -68,8 +67,20 @@
 							   <input type="email" class="form-control" name="email" id="exampleInputPassword1" required>
 						   </div>
 						   <div class="form-group">
-							   <label for="exampleInputPassword1">Password</label>
-							   <input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+							   <label for="exampleInputPassword1">Phone</label>
+							   <input type="number" class="form-control" name="phone" id="exampleInputPassword1" required>
+						   </div>
+						   <div class="form-group">
+							   <label for="exampleInputPassword1">Address</label>
+							   <input type="text" class="form-control" name="address" id="exampleInputPassword1" required>
+						   </div>
+						   <div class="form-group">
+							   <label for="exampleInputPassword1">NID no</label>
+							   <input type="number" class="form-control" name="NID" id="exampleInputPassword1" required>
+						   </div>
+						   <div class="form-group">
+							   <label for="exampleInputPassword1">Department</label>
+							   <input type="text" class="form-control" name="department" id="exampleInputPassword1" required>
 						   </div>
 						   <button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 					   </form>
@@ -88,7 +99,7 @@
 		  <div class="footer">
 			  <div class="card">
 				  <div class="card-header" style="margin-left: 85%;">
-					  <a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
+					  <a  href="<?php echo base_url('login/user_logout');?>">Log Out</a>
 				  </div>
 			  </div>
 		  </div>

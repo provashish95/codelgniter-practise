@@ -24,9 +24,6 @@
 			width: 100%;
 			left: 10px;
 		}
-		.form-control{
-			width: 50%!important;
-		}
 	</style>
 </head>
 <body>
@@ -36,19 +33,20 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('employee');  ?>">Home</a>
-				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Product</a>
+				<div style="margin-left: 35%;"><h4>Create Your Account</h4></div>
+<!--				<a class="navbar-brand" href="#">Home</a>-->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-<!--						<a class="navbar-brand" href="#">Product</a>-->
+						<!--					<a class="navbar-brand" href="#">Product</a>-->
 					</ul>
-					<form class="form-inline my-2 my-lg-0">
-						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-					</form>
+<!--					<form class="form-inline my-2 my-lg-0">-->
+<!--						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">-->
+<!--						<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+<!--					</form>-->
+
 				</div>
 			</nav>
 			<!--		nav bar -->
@@ -60,39 +58,25 @@
 						<div class="col-md-2">
 						</div>
 						<div class="col-md-8">
-
 							<?php if ($this->session->flashdata('user_success')) { ?>
-								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
+								<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
-							<form action="<?= base_url('product/update_product')?>" method="post">
-								<input type="hidden"  name="id" value="<?=  $product->id ?>">
+							<form action="<?= base_url('login/add_account') ?>" method="post">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Product Name</label>
-									<input type="text" class="form-control" value="<?=  $product->name ?>" name="name" aria-describedby="emailHelp" required>
+									<label for="exampleInputEmail1">Name</label>
+									<input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputPassword1">Product Price</label>
-									<input type="number" class="form-control" name="price"  value="<?=  $product->price ?>" required>
+									<label for="exampleInputPassword1">Email</label>
+									<input type="email" class="form-control" name="email" id="exampleInputPassword1" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleFormControlTextarea1">Description</label>
-									<textarea class="form-control" name="description"  rows="3"><?=  $product->description ?></textarea>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">Tag</label>
-									<input type="text" class="form-control" name="tag" value="<?=  $product->tag ?>" required>
+									<label for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
 								</div>
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
-								<button type="submit" class="btn btn-primary" formaction="<?= base_url('product') ?>" name="submit">Cancel</button>
-
 							</form>
-								<script type="text/javascript">
-
-									$(document).ready(function(){
-										tinymce.init({selector:'textarea'});
-									});
-								</script>
 
 						</div>
 						<div class="col-md-2">
@@ -108,7 +92,7 @@
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?= base_url('login/user_logout') ?>">Log Out</a>
+				<a  href="<?= base_url('login/login_view') ?>">Log In</a>
 			</div>
 		</div>
 	</div>

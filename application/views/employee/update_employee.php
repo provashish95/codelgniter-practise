@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>User Login</title>
+	<title>Update View</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,8 +24,8 @@
 			width: 100%;
 			left: 10px;
 		}
-		.form-control{
-			width: 50%!important;
+		.alert-success{
+			width: 41%!important;
 		}
 	</style>
 </head>
@@ -36,14 +36,18 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('employee');  ?>">Home</a>
-				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Product</a>
+				<a class="navbar-brand" href="<?php echo base_url('/');?>">Home</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
+
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
+
+						<a class="navbar-brand" href="<?php echo base_url('employee/create_employee');?>">Add Employee</a>
+
 <!--						<a class="navbar-brand" href="#">Product</a>-->
+
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -58,41 +62,42 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-2">
+
 						</div>
 						<div class="col-md-8">
 
-							<?php if ($this->session->flashdata('user_success')) { ?>
+								<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
-							<form action="<?= base_url('product/update_product')?>" method="post">
-								<input type="hidden"  name="id" value="<?=  $product->id ?>">
+							<form action="<?= base_url('employee/update_employee')?>" method="post">
+								<input type="hidden"  name="id" value="<?=  $employee->id ?>">
 								<div class="form-group">
-									<label for="exampleInputEmail1">Product Name</label>
-									<input type="text" class="form-control" value="<?=  $product->name ?>" name="name" aria-describedby="emailHelp" required>
+									<label for="exampleInputEmail1">Name</label>
+									<input type="text" class="form-control" name="name"  value="<?=  $employee->name ?>" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputPassword1">Product Price</label>
-									<input type="number" class="form-control" name="price"  value="<?=  $product->price ?>" required>
+									<label for="exampleInputPassword1">Email</label>
+									<input type="email" class="form-control" name="email" value="<?= $employee->email ?>" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleFormControlTextarea1">Description</label>
-									<textarea class="form-control" name="description"  rows="3"><?=  $product->description ?></textarea>
+									<label for="exampleInputPassword1">Phone</label>
+									<input type="number" class="form-control" name="phone" value="<?= $employee->phone ?>" required>
 								</div>
 								<div class="form-group">
-									<label for="exampleInputPassword1">Tag</label>
-									<input type="text" class="form-control" name="tag" value="<?=  $product->tag ?>" required>
+									<label for="exampleInputPassword1">Address</label>
+									<input type="text" class="form-control" name="address" value="<?= $employee->address ?>" required>
 								</div>
-								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
-								<button type="submit" class="btn btn-primary" formaction="<?= base_url('product') ?>" name="submit">Cancel</button>
-
+								<div class="form-group">
+									<label for="exampleInputPassword1">NID no</label>
+									<input type="number" class="form-control" name="NID" value="<?= $employee->NID ?>" required>
+								</div>
+								<div class="form-group">
+									<label for="exampleInputPassword1">Department</label>
+									<input type="text" class="form-control" name="department" value="<?= $employee->department ?>" required>
+								</div>
+								<button type="submit" class="btn btn-primary" value="submit" name="submit">Update</button>
 							</form>
-								<script type="text/javascript">
-
-									$(document).ready(function(){
-										tinymce.init({selector:'textarea'});
-									});
-								</script>
 
 						</div>
 						<div class="col-md-2">
@@ -104,15 +109,17 @@
 		</div>
 	</div>
 </div>
+
 <footer>
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?= base_url('login/user_logout') ?>">Log Out</a>
+				<a  href="<?php echo base_url('login/user_logout');?>">Log Out</a>
 			</div>
 		</div>
 	</div>
 </footer>
+
 </div>
 </body>
 </html>

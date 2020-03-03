@@ -33,12 +33,11 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="#">Home</a>
+				<a class="navbar-brand" href="<?= base_url('employee')?>">Home</a>
 				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Product</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-				<a class="navbar-brand" href="<?php echo base_url('users');  ?>">Show Users</a>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
 
@@ -79,6 +78,7 @@
 								</div>
 
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
+								<a type="submit" class="btn btn-primary" href="<?= base_url('product') ?>" name="submit">Cancel</a>
 							</form>
 
 						</div>
@@ -95,7 +95,7 @@
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?= base_url('users/user_logout') ?>">Log Out</a>
+				<a  href="<?= base_url('login/user_logout') ?>">Log Out</a>
 			</div>
 		</div>
 	</div>

@@ -34,13 +34,14 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('product/index');  ?>">All Products</a>
+				<a class="navbar-brand" href="<?= base_url('product/index')  ?>">All Products</a>
+				<a class="navbar-brand" href="<?= base_url('login/view_admins')?>">All Admins</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-						<a class="navbar-brand" href="<?php echo base_url('users/create_user');?>">Add Users</a>
+						<a class="navbar-brand" href="<?= base_url('employee/create_employee') ?>">Add Employee</a>
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -53,44 +54,47 @@
 		<div class="row">
 			<div class="card" style="width: 100%; margin: 20px;">
 					<div class="row">
-						<div class="col-md-2">
+						<div class="col-md-1">
 						</div>
-						<div class="col-md-8">
+						<div class="col-md-9">
 							<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
-
-							<table class="table">
+							<table class="table" >
 								<thead>
-								<tr>
+								<tr style="text-align: center">
 									<th scope="col">ID</th>
 									<th scope="col">Name</th>
 									<th scope="col">Email</th>
-									<th scope="col">Password</th>
+									<th scope="col">Phone</th>
+									<th scope="col">Address</th>
+									<th scope="col">NID no.</th>
+									<th scope="col">Dept</th>
 									<th scope="col">Action</th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php
 								$i = 1;
-								foreach($users as $row) {  ?>
+								foreach($employers as $employee) {  ?>
 								<tr>
-									<th scope="row"><?php echo $row->id ;?></th>
-									<td><?php echo $row->name ;?></td>
-									<td><?php echo $row->email ;?></td>
-									<td><?php echo $row->password ;?></td>
-									<td><a href='<?php echo base_url('users/delete_user/'.$row->id) ;?>'>Delete</a></td>
-									<td><a href='<?php echo base_url('users/view_update_user/'.$row->id) ;?>'>Update</a></td>
+									<th scope="row"><?php echo $employee->id ;?></th>
+									<td><?php echo $employee->name ;?></td>
+									<td><?php echo $employee->email ;?></td>
+									<td><?php echo $employee->phone ;?></td>
+									<td><?php echo $employee->address ;?></td>
+									<td><?php echo $employee->NID ;?></td>
+									<td><?php echo $employee->department ;?></td>
+									<td><a href='<?=  base_url('employee/view_update_employee/'.$employee->id) ?>'>update</a></td>
+									<td><a href='<?= base_url('employee/delete_employee/'.$employee->id) ?>'>delete</a></td>
 								</tr>
 								<?php }?>
 								</tbody>
 							</table>
-
-
 						</div>
-						<div class="col-md-2">
-
-						</div>
+<!--						<div class="col-md-1">-->
+<!---->
+<!--						</div>-->
 					</div>
 				</div>
 			</div>
@@ -101,7 +105,7 @@
 	<div class="footer">
 		<div class="card">
 			<div class="card-header" style="margin-left: 85%;">
-				<a  href="<?php echo base_url('users/user_logout');?>">Log Out</a>
+				<a  href="<?php echo base_url('login/user_logout');?>">Log Out</a>
 			</div>
 		</div>
 	</div>
