@@ -56,6 +56,9 @@
 						   <div class="col-md-2">
 						   </div>
 					   <div class="col-md-8">
+						   <?php if ($this->session->flashdata('user_success')) { ?>
+							   <div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
+						   <?php } ?>
 
 					   <form action="<?= base_url('employee/add_employee') ?>" method="post">
 						   <div class="form-group">
@@ -67,16 +70,8 @@
 							   <input type="email" class="form-control" name="email" id="exampleInputPassword1" required>
 						   </div>
 						   <div class="form-group">
-							   <label for="exampleInputPassword1">Phone</label>
-							   <input type="number" class="form-control" name="phone" id="exampleInputPassword1" required>
-						   </div>
-						   <div class="form-group">
 							   <label for="exampleInputPassword1">Address</label>
 							   <input type="text" class="form-control" name="address" id="exampleInputPassword1" required>
-						   </div>
-						   <div class="form-group">
-							   <label for="exampleInputPassword1">NID no</label>
-							   <input type="number" class="form-control" name="NID" id="exampleInputPassword1" required>
 						   </div>
 						   <div class="form-group">
 							   <label for="exampleInputPassword1">Department</label>

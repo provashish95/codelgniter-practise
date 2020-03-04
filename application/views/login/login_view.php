@@ -57,7 +57,7 @@
 
 							<div id='login_form'>
 								<?php if ($this->session->flashdata('user_success')) { ?>
-									<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
+									<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 								<?php } ?>
 								<div style="margin-left: 30%;">
 								<form action='<?php echo base_url();?>login/login_action' method='post'>

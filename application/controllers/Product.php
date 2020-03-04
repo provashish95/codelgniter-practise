@@ -17,19 +17,26 @@ class Product extends CI_Controller{
 		$this->load->view('product/product_add');
 	}
 	public function product_add(){
-		$data = array(
-			'name' => $this->input->post('name'),
-			'price' => $this->input->post('price'),
-			'description' => $this->input->post('description'),
-			'tag' => $this->input->post('tag')
-		);
-		$result = $this->Product_model->product_add($data);
-		if ($result == true) {
-			$this->session->set_flashdata('user_success', 'product Add Successfully.');
-			redirect('product/index');
+		$name   = $this->input->post('name');
+		$result = $this->Product_model->check_duplicate_product($name);
+		if ($result){
+			$this->session->set_flashdata('user_success', 'Product Name Is Not Valid');
+			redirect(base_url("product/product_create"));
 		}else{
-			$this->session->set_flashdata('user_success', 'product not added.');
-			redirect('product/index');
+			$data = array(
+				'name'        => $this->input->post('name'),
+				'price'       => $this->input->post('price'),
+				'description' => $this->input->post('description'),
+				'tag'         => $this->input->post('tag')
+			);
+			$result = $this->Product_model->product_add($data);
+			if ($result == true) {
+				$this->session->set_flashdata('user_success', 'Product Added Successfully.');
+				redirect('product/index');
+			}else{
+				$this->session->set_flashdata('user_success', 'Product not added.');
+				redirect('product/index');
+			}
 		}
 	}
 	public function view_update_product($id){
@@ -38,17 +45,25 @@ class Product extends CI_Controller{
 	}
 	public function update_product()
 	{
-
 		if($this->input->post('submit'))
 		{
-			$id = $this->input->post('id');
-			$name = $this->input->post('name');
-			$price = $this->input->post('price');
-			$description = $this->input->post('description');
-			$tag = $this->input->post('tag');
-			$result = $this->Product_model->update_product($name,$price,$description,$tag,$id);
+			$id     = $this->input->post('id');
+			$name   = $this->input->post('name');
+			$result = $this->Product_model->check_duplicate_product_by_id($id, $name);
+			if (!$result){
+				$this->session->set_flashdata('user_success', 'Product Name Is Not Valid.');
+				redirect('product/view_update_product/'.$id);
+			}else {
+				$data = array(
+					'name'        => $this->input->post('name'),
+					'price'       => $this->input->post('price'),
+					'description' => $this->input->post('description'),
+					'tag'         => $this->input->post('tag')
+						);
+				$result = $this->Product_model->update_product($id, $data);
+					}
 			if ($result == true){
-				$this->session->set_flashdata('user_success', 'Product has been update Successfully.');
+				$this->session->set_flashdata('user_success', 'Product has been updated Successfully.');
 				redirect('product');
 			}else{
 				$this->session->set_flashdata('user_success', 'Product not updated.');
@@ -58,13 +73,12 @@ class Product extends CI_Controller{
 	}
 	public function delete_product($id){
 		if ($result = $this->Product_model->product_delete($id)){
-			$this->session->set_flashdata('user_success', 'Product has been Deleted Successfully.');
+			$this->session->set_flashdata('user_success', 'Product Deleted Successfully.');
 			redirect('product');
 		}else{
 			$this->session->set_flashdata('user_success', 'Product not Deleted.');
 			redirect('product');
 		}
-
 	}
 
 }

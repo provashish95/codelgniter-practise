@@ -57,7 +57,9 @@
 						<div class="col-md-2">
 						</div>
 						<div class="col-md-8">
-
+							<?php if ($this->session->flashdata('user_success')) { ?>
+								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
+							<?php } ?>
 							<form action="<?php echo base_url('product/product_add');?>" method="post">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Product Name</label>

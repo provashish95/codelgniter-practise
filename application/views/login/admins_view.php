@@ -36,6 +36,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="<?= base_url('employee')  ?>">Home</a>
 				<a class="navbar-brand" href="<?= base_url('product/index')  ?>">All Products</a>
+				<a class="navbar-brand" href="<?= base_url('login/create_account')  ?>">Add admin</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -61,6 +62,7 @@
 						<?php } ?>
 
 						<table class="table">
+							<h6 style="margin-left: 40%;">Admin Table</h6>
 							<thead>
 							<tr>
 								<th scope="col">ID</th>

@@ -61,15 +61,14 @@
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 							<table class="table" >
+								<h6 style="margin-left: 40%;">Employee Table</h6>
 								<thead>
-								<tr style="text-align: center">
+								<tr>
 									<th scope="col">ID</th>
 									<th scope="col">Name</th>
 									<th scope="col">Email</th>
-									<th scope="col">Phone</th>
 									<th scope="col">Address</th>
-									<th scope="col">NID no.</th>
-									<th scope="col">Dept</th>
+									<th scope="col">Department</th>
 									<th scope="col">Action</th>
 								</tr>
 								</thead>
@@ -81,9 +80,7 @@
 									<th scope="row"><?php echo $employee->id ;?></th>
 									<td><?php echo $employee->name ;?></td>
 									<td><?php echo $employee->email ;?></td>
-									<td><?php echo $employee->phone ;?></td>
 									<td><?php echo $employee->address ;?></td>
-									<td><?php echo $employee->NID ;?></td>
 									<td><?php echo $employee->department ;?></td>
 									<td><a href='<?=  base_url('employee/view_update_employee/'.$employee->id) ?>'>update</a></td>
 									<td><a href='<?= base_url('employee/delete_employee/'.$employee->id) ?>'>delete</a></td>

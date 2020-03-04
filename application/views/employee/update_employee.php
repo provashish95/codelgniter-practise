@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Update View</title>
+	<title>User Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -24,9 +24,6 @@
 			width: 100%;
 			left: 10px;
 		}
-		.alert-success{
-			width: 41%!important;
-		}
 	</style>
 </head>
 <body>
@@ -36,18 +33,13 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<a class="navbar-brand" href="<?php echo base_url('/');?>">Home</a>
+				<a class="navbar-brand" href="<?= base_url('employee')  ?>">Home</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
-
 				<div class="collapse navbar-collapse" id="navbarSupportedContent">
 					<ul class="navbar-nav mr-auto">
-
-						<a class="navbar-brand" href="<?php echo base_url('employee/create_employee');?>">Add Employee</a>
-
-<!--						<a class="navbar-brand" href="#">Product</a>-->
-
+						<!--					<a class="navbar-brand" href="#">Product</a>-->
 					</ul>
 					<form class="form-inline my-2 my-lg-0">
 						<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -62,41 +54,31 @@
 				<div class="card-body">
 					<div class="row">
 						<div class="col-md-2">
-
 						</div>
 						<div class="col-md-8">
-
-								<?php if ($this->session->flashdata('user_success')) { ?>
+							<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
-							<form action="<?= base_url('employee/update_employee')?>" method="post">
+							<form action="<?= base_url('employee/update_employee') ?>" method="post">
 								<input type="hidden"  name="id" value="<?=  $employee->id ?>">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Name</label>
-									<input type="text" class="form-control" name="name"  value="<?=  $employee->name ?>" required>
+									<input type="text" class="form-control" value="<?= $employee->name ?>" name="name" aria-describedby="emailHelp" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Email</label>
-									<input type="email" class="form-control" name="email" value="<?= $employee->email ?>" required>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">Phone</label>
-									<input type="number" class="form-control" name="phone" value="<?= $employee->phone ?>" required>
+									<input type="email" class="form-control" value="<?= $employee->email ?>" name="email"  required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Address</label>
-									<input type="text" class="form-control" name="address" value="<?= $employee->address ?>" required>
-								</div>
-								<div class="form-group">
-									<label for="exampleInputPassword1">NID no</label>
-									<input type="number" class="form-control" name="NID" value="<?= $employee->NID ?>" required>
+									<input type="text" class="form-control" value="<?= $employee->address ?>" name="address"  required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Department</label>
-									<input type="text" class="form-control" name="department" value="<?= $employee->department ?>" required>
+									<input type="text" class="form-control" value="<?= $employee->department ?>" name="department"  required>
 								</div>
-								<button type="submit" class="btn btn-primary" value="submit" name="submit">Update</button>
+								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 							</form>
 
 						</div>
@@ -109,7 +91,6 @@
 		</div>
 	</div>
 </div>
-
 <footer>
 	<div class="footer">
 		<div class="card">
@@ -119,8 +100,6 @@
 		</div>
 	</div>
 </footer>
-
 </div>
 </body>
 </html>
-

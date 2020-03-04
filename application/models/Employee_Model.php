@@ -7,8 +7,8 @@ class Employee_Model extends CI_Model
 	}
 	function add_employee($data)
 	{
-		$this->db->insert("employee", $data);
-		return true;
+		return $this->db->insert("employee", $data);
+
 	}
 	function display_employee_by_id($id)
 	{
@@ -16,12 +16,24 @@ class Employee_Model extends CI_Model
 		return $query->row();
 
 	}
-	function update_employee($name,$email,$phone,$address,$NID,$department,$id){
-		return $query=$this->db->query("update employee SET name='$name',email='$email',phone='$phone',address='$address',NID='$NID',department='$department' where id='$id'");
+	function update_employee($id, $data){
+		$this->db->where('id', $id);
+		 return $this->db->update('employee', $data);
 	}
 
 	function employee_delete($id)
 	{
 		return $this->db->delete("employee", "id = $id");
+	}
+	function check_duplicate_employee($email){
+		 $this->db->where('email',$email);
+		 $result = $this->db->get('employee');
+		 return $result->num_rows()>0;
+	}
+	function check_duplicate_employee_by_id($id,$email){
+		$this->db->where('id !=',$id);
+		$this->db->where('email !=',$email);
+		$result = $this->db->get('employee');
+		return $result->num_rows()>0;
 	}
 }

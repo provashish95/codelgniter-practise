@@ -33,7 +33,7 @@
 		<div class="header">
 			<!--		nav bar-->
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
-				<div style="margin-left: 35%;"><h4>Create Your Account</h4></div>
+				<div style="margin-left: 35%;"><h4>Update Your Account</h4></div>
 				<!--				<a class="navbar-brand" href="#">Home</a>-->
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
 						</div>
 						<div class="col-md-8">
 							<?php if ($this->session->flashdata('user_success')) { ?>
-								<div class="alert alert-success"> <?= $this->session->flashdata('user_success') ?> </div>
+								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
 							<form action="<?= base_url('login/update_admin') ?>" method="post">
@@ -77,6 +77,7 @@
 									<input type="password" class="form-control" name="password" value="<?=  $admin->password ?>" required>
 								</div>
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
+								<button type="submit" class="btn btn-primary" formaction="<?= base_url('login/view_admins') ?>" name="submit">Cancel</button>
 							</form>
 
 						</div>

@@ -18,10 +18,10 @@ class Login extends CI_Controller{
 		}
 	}
 	public function login_action(){
-		$name = $this->input->post('name');
+		$name     = $this->input->post('name');
 		$password = $this->input->post('password');
 
-		$result = $this->Login_Model->validate($name, $password);
+		$result   = $this->Login_Model->validate($name, $password);
 		if(!$result){
 			$this->session->set_flashdata('user_success', 'Your username or password incorrect');
 			redirect('login/login_view');
@@ -55,16 +55,16 @@ class Login extends CI_Controller{
 	}
 
 	public function add_account(){
-		$name = $this->input->post('name');
+		$name   = $this->input->post('name');
 		$result = $this->Login_Model->check_duplicate_admin($name);
-		$num = $result->num_rows();
-		if ($num > 0) {
-			$this->session->set_flashdata('user_success', 'your name is not valid');
+
+		if ($result) {
+			$this->session->set_flashdata('user_success', 'Your Name Is Not Valid');
 			redirect(base_url("login/create_account"));
 		}else{
 			$data = array(
-				'name' => $this->input->post('name'),
-				'email' => $this->input->post('email'),
+				'name'     => $this->input->post('name'),
+				'email'    => $this->input->post('email'),
 				'password' => $this->input->post('password')
 			);
 			$this->Login_Model->add_account($data);
@@ -77,32 +77,34 @@ class Login extends CI_Controller{
 		$this->load->view('login/admin_update',$this->data);
 	}
 	public function update_admin(){
-		$name = $this->input->post('name');
-		$result = $this->Login_Model->check_duplicate_admin($name);
-		$num = $result->num_rows();
-		if ($num > 0) {
-			$this->session->set_flashdata('user_success', 'your name is not valid');
-			redirect(base_url("login/view_admins"));
-		}else{
-			if($this->input->post('submit')){
-				$id = $this->input->post('id');
-				$name = $this->input->post('name');
-				$email = $this->input->post('email');
-				$password = $this->input->post('password');
-				$result = $this->Login_Model->update_admin($name,$email,$password,$id);
-				if ($result == true){
-					$this->session->set_flashdata('user_success', 'Admin has been update Successfully.');
-					redirect('login/view_admins');
-				}else{
-					$this->session->set_flashdata('user_success', 'Admin not updated.');
-					redirect('login/view_admins');
-				}
+		if($this->input->post('submit')) {
+			        $id     = $this->input->post('id');
+					$name   = $this->input->post('name');
+					$result = $this->Login_Model->check_duplicate_admin_by_id($id,$name);
+			if (!$result){
+					$this->session->set_flashdata('user_success', 'Your Name Is Not Valid');
+					redirect(base_url("login/view_update_admin/".$id));
+			}else{
+					$data = array(
+						'name'     => $this->input->post('name'),
+						'email'    => $this->input->post('email'),
+						'password' => $this->input->post('password')
+					);
+					$result = $this->Login_Model->update_admin($id, $data);
+					if ($result == true) {
+						$this->session->set_flashdata('user_success', 'Admin has been update Successfully.');
+						redirect('login/view_admins');
+					}else{
+						$this->session->set_flashdata('user_success', 'Admin not updated.');
+						redirect('login/view_admins');
+					}
 
+				}
 			}
-		}
 	}
 
 	public function delete_admin($id){
+
 		if ($result = $this->Login_Model->admin_delete($id)){
 			$this->session->set_flashdata('user_success', 'Admin has been Deleted Successfully.');
 			redirect('login/view_admins');

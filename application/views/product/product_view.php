@@ -61,6 +61,7 @@
 							<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 						<?php } ?>
 						<table class="table">
+							<h6 style="margin-left: 40%;">Product Table</h6>
 							<thead>
 							<tr>
 								<th scope="col">ID</th>
