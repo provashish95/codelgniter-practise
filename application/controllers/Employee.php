@@ -18,7 +18,7 @@ class Employee extends CI_Controller
 	public function create_employee(){
 		$this->load->view('employee/add_employee');
 	}
-	public function add_employee() {
+	public function add_employee(){
 			$email  = $this->input->post('email');
 		    $result = $this->Employee_Model->check_duplicate_employee($email);
 		if ($result) {
@@ -32,7 +32,7 @@ class Employee extends CI_Controller
 				'department' => $this->input->post('department')
 			);
 			$result = $this->Employee_Model->add_employee($data);
-			if ($result) {
+			if ($result){
 				$this->session->set_flashdata('user_success', 'Employee Add Successfully.');
 				redirect('employee');
 			}else{
@@ -40,10 +40,9 @@ class Employee extends CI_Controller
 				redirect('employee');
 			}
 		}
-
 	}
 	public function view_update_employee($id){
-		$this->data['employee']=$this->Employee_Model->display_employee_by_id($id);
+		$this->data['employee']=$this->Employee_Model->view_employee_by_id($id);
 		$this->load->view('employee/update_employee',$this->data);
 	}
 	public function update_employee()
@@ -55,7 +54,7 @@ class Employee extends CI_Controller
 				if (!$result) {
 					$this->session->set_flashdata('user_success', 'Your are not  original employee');
 					redirect(base_url("employee/view_update_employee/" . $id));
-				} else {
+				}else{
 					$data = array(
 						'name'       => $this->input->post('name'),
 						'email'      => $this->input->post('email'),
@@ -66,7 +65,7 @@ class Employee extends CI_Controller
 					if ($result) {
 						$this->session->set_flashdata('user_success', 'Employee has been update Successfully.');
 						redirect('employee');
-					} else {
+					}else{
 						$this->session->set_flashdata('user_success', 'Employee not updated.');
 						redirect('employee');
 					}
