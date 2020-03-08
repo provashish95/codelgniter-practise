@@ -25,4 +25,23 @@ class Ajax_employee_Model extends CI_Model{
 			 return false;
 		 }
 	 }
+	public function update_employee($id, $data){
+		$this->db->where('id', $id);
+		$this->db->update('tbl_employees', $data);
+		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	public function delete_employee($id){
+		$this->db->where('id', $id);
+		$this->db->delete('tbl_employees');
+		if($this->db->affected_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 }

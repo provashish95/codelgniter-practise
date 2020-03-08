@@ -61,7 +61,7 @@
 				<h4 class="modal-title">Confirm Delete</h4>
 			</div>
 			<div class="modal-body">
-				Do you want to delete this record?
+				Do you want to delete this Data?
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -87,13 +87,13 @@
 			var url = $('#myForm').attr('action');
 			var data = $('#myForm').serialize();
 			//validate form
-			var empoyeeName = $('input[name=name]');
+			var employeeName = $('input[name=name]');
 			var address = $('textarea[name=address]');
 			var result = '';
-			if(empoyeeName.val()==''){
-				empoyeeName.parent().parent().addClass('has-error');
+			if(employeeName.val()==''){
+				employeeName.parent().parent().addClass('has-error');
 			}else{
-				empoyeeName.parent().parent().removeClass('has-error');
+				employeeName.parent().parent().removeClass('has-error');
 				result +='1';
 			}
 			if(address.val()==''){
@@ -133,12 +133,12 @@
 			}
 		});
 
-		//edit
+		//edit//edit/
 		$('#showdata').on('click', '.item-edit', function(){
 			var id = $(this).attr('data');
 			$('#myModal').modal('show');
 			$('#myModal').find('.modal-title').text('Edit Employee');
-			$('#myForm').attr('action', '<?php echo base_url() ?>employee/updateEmployee');
+			$('#myForm').attr('action', '<?php echo base_url() ?>ajax_employee/update_employee');
 			$.ajax({
 				type: 'ajax',
 				method: 'get',
@@ -156,8 +156,9 @@
 				}
 			});
 		});
+		//edit
 
-		//delete-
+		//delete-employee...
 		$('#showdata').on('click', '.item-delete', function(){
 			var id = $(this).attr('data');
 			$('#deleteModal').modal('show');
@@ -167,7 +168,7 @@
 					type: 'ajax',
 					method: 'get',
 					async: false,
-					url: '<?php echo base_url() ?>employee/deleteEmployee',
+					url: '<?php echo base_url() ?>ajax_employee/delete_employee',
 					data:{id:id},
 					dataType: 'json',
 					success: function(response){
@@ -186,9 +187,9 @@
 			});
 		});
 
+//delete-employee....
 
-
-		//function
+		//function..//function
 		function show_all_employee(){
 			$.ajax({
 				type: 'ajax',
@@ -219,4 +220,5 @@
 			});
 		}
 	});
+	//function//function//
 </script>
