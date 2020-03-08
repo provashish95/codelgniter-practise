@@ -83,4 +83,7 @@ class Employee extends CI_Controller
 			redirect('employee');
 		}
 	}
+	public function view_ajax_employee(){
+		$this->load->view('ajax_employee/ajax_employee_view');
+	}
 }

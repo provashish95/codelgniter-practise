@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>Employee</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -14,7 +14,7 @@
 		.footer {
 			position: fixed;
 			height: 50px;
-			background-color: blue;
+			background-color: #ff3aff;
 			bottom: 0px;
 			left: 0px;
 			right: 0px;
@@ -36,6 +36,7 @@
 			<nav class="navbar navbar-expand-lg navbar-light bg-light">
 				<a class="navbar-brand" href="<?= base_url('product/index')  ?>">All Products</a>
 				<a class="navbar-brand" href="<?= base_url('login/view_admins')?>">All Admins</a>
+				<a class="navbar-brand" href="<?= base_url('ajax_employee')?>">Ajax employee</a>
 				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -101,9 +102,11 @@
 <footer>
 	<div class="footer">
 		<div class="card">
+<!--			this is login method--><!--			this is login method-->
 			<div class="card-header" style="margin-left: 85%;">
 				<a  href="<?php echo base_url('login/user_logout');?>">Log Out</a>
 			</div>
+			<!--			this is login method--><!--			this is login method-->
 		</div>
 	</div>
 </footer>
