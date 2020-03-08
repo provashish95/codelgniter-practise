@@ -14,7 +14,7 @@ class Ajax_employee extends CI_Controller{
 		$this->load->view('layout/footer');
 	}
 	public function show_all_employee(){
-		$result = $this->Ajax_employee_Model->showAllEmployee();
+		$result = $this->Ajax_employee_Model->show_all_employee();
 		echo json_encode($result);
 	}
 	public function add_employee(){
@@ -29,5 +29,10 @@ class Ajax_employee extends CI_Controller{
 			$msg['success'] = true;
 		}
 		echo json_encode($msg);
+	}
+	public function edit_employee(){
+		$id = $this->input->get('id');
+		$result = $this->Ajax_employee_Model->edit_employee($id);
+		echo json_encode($result);
 	}
 }

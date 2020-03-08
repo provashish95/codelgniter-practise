@@ -11,7 +11,7 @@
 
 <div class="navbar navbar-default">
 	<div class="container">
-		<h2><span class="glyphicon glyphicon-home"></span>&nbsp;Ajax </h2>
+		<h2><span class="glyphicon glyphicon-home"></span>&nbsp;ROY </h2>
 	</div>
 </div>
 <div class="container">

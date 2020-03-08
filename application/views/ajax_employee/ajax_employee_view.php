@@ -5,6 +5,7 @@
 
 	</div>
 	<button id="btnAdd" class="btn btn-success">Add New</button>
+	<button id="btnAdd" class="btn btn-success"><a style="color: white" href="<?= base_url('employee')?>">Home</a></button>
 	<table class="table table-bordered table-responsive" style="margin-top: 20px;">
 		<thead>
 		<tr>
@@ -29,7 +30,7 @@
 			</div>
 			<div class="modal-body">
 				<form id="myForm" action="" method="post" class="form-horizontal">
-					<input type="hidden" name="txtId" value="0">
+					<input type="hidden" name="id" value="0">
 					<div class="form-group">
 						<label for="name" class="label-control col-md-4">Employee Name</label>
 						<div class="col-md-8">
@@ -141,14 +142,14 @@
 			$.ajax({
 				type: 'ajax',
 				method: 'get',
-				url: '<?php echo base_url() ?>employee/editEmployee',
+				url: '<?php echo base_url() ?>ajax_employee/edit_employee',
 				data: {id: id},
 				async: false,
 				dataType: 'json',
 				success: function(data){
 					$('input[name=name]').val(data.name);
 					$('textarea[name=address]').val(data.address);
-					$('input[name=txtId]').val(data.id);
+					$('input[name=id]').val(data.id);
 				},
 				error: function(){
 					alert('Could not Edit Data');
