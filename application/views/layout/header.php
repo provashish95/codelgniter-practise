@@ -11,7 +11,8 @@
 
 <div class="navbar navbar-default">
 	<div class="container">
-		<h2><span class="glyphicon glyphicon-home"></span>&nbsp;ROY </h2>
+<!--		<span class="glyphicon glyphicon-home" style="color: #2aabd2"></span>-->
+		<h2 style="color: #8a6d3b">&nbsp;ROY </h2>
 	</div>
 </div>
 <div class="container">

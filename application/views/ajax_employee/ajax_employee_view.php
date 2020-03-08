@@ -123,7 +123,7 @@
 							$('.alert-success').html('Employee '+type+' successfully').fadeIn().delay(4000).fadeOut('slow');
 							show_all_employee();
 						}else{
-							alert('Error');
+							alert('Not updated!');
 						}
 					},
 					error: function(){
