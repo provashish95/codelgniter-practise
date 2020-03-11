@@ -7,6 +7,7 @@ class Employee_Model extends CI_Model
 	}
 	function add_employee($data)
 	{
+
 		return $this->db->insert("employee", $data);
 	}
 	function view_employee_by_id($id)
@@ -32,5 +33,35 @@ class Employee_Model extends CI_Model
 		$this->db->where('email !=',$email);
 		$result = $this->db->get('employee');
 		return $result->num_rows()>0;
+	}
+
+	//This is for validation rules......
+	public function rules(){
+		$config = array(
+			array(
+				'field' => 'name',
+				'label' => 'Name',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'email',
+				'label' => 'Email',
+				'rules' => 'required',
+				'errors'=> array(
+					'required' => 'You must provide a %s.',
+				)
+			),
+			array(
+				'field' => 'address',
+				'label' => 'Address',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'department',
+				'label' => 'Department',
+				'rules' => 'required'
+			)
+		);
+		return $this->form_validation->set_rules($config);
 	}
 }

@@ -52,6 +52,7 @@
 			<!--		nav bar -->
 		</div>
 		<div class="row">
+
 			<div class="card" style="width: 100%; margin: 20px;">
 				<div class="card-body">
 					<div class="row">
@@ -62,6 +63,8 @@
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
 
+<!--							<label for="exampleInputEmail1" id="error"></label>-->
+							<div id="error"></div>
 								<div class="form-group">
 									<label for="exampleInputEmail1">Product Name</label>
 									<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" >
@@ -82,11 +85,9 @@
 
 								<button type="submit" class="btn btn-primary" value="submit" name="submit" id="btn_save">Submit</button>
 								<a type="submit" class="btn btn-primary" href="<?= base_url('product') ?>" name="submit">Cancel</a>
-
-
+<!--							</form>-->
 						</div>
 						<div class="col-md-2">
-
 						</div>
 					</div>
 				</div>
@@ -103,9 +104,12 @@
 		</div>
 	</div>
 </footer>
+
 <script type="text/javascript">
 	//add product......
-	$('#btn_save').on('click', function (){
+	$('#btn_save').on('click', function (e){
+		e.preventDefault();
+
 		var name        = $('#name').val();
 		var price       = $('#price').val();
 		var description = $('#description').val();
@@ -115,16 +119,22 @@
 			url  : "<?= base_url('product/add_product') ?>",
 			dataType : "JSON",
 			data : {name:name , price:price, description:description, tag:tag},
-			success: function(data){
-				$('[name="name"]')       .val("");
-				$('[name="price"]')      .val("");
-				$('[name="description"]').val("");
-				$('[name="tag"]')        .val("");
-				top.location.href="<?= base_url('product')?>";
-			}
+			success: function(response){
+					$(".print-error-msg").css('display','none');
+					$('[name="name"]')       .val("");
+					$('[name="price"]')      .val("");
+					$('[name="description"]').val("");
+					$('[name="tag"]')        .val("");
+					top.location.href="<?= base_url('product')?>";
+				},
+			     error:function(response){
+				//alert(response.responseText.);
+				//console.log(response.);
+					 $('#error').html(response.responseText);
 
+			}
 		});
-	});
+	 });
 	//add product......
 </script>
 

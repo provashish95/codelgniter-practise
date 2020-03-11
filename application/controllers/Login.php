@@ -47,44 +47,60 @@ class Login extends CI_Controller{
 		$this->load->view("login/login_view");
 	}
 	public function view_admins(){
-		$data['admins'] = $this->Login_Model->view_admins();
-		$this->load->view('login/admins_view', $data);
+		if($this->session->userdata('user_details')){
+			$data['admins'] = $this->Login_Model->view_admins();
+			$this->load->view('login/admins_view', $data);
+		}else{
+			$this->load->view("login/login_view");
+		}
 	}
 	public function create_account(){
-		$this->load->view('login/account_create');
+		if($this->session->userdata('user_details')){
+			$this->load->view('login/account_create');
+		}else{
+			$this->load->view("login/login_view");
+		}
 	}
 
 	public function add_account(){
-		$name   = $this->input->post('name');
-		$result = $this->Login_Model->check_duplicate_admin($name);
-
-		if ($result) {
-			$this->session->set_flashdata('user_success', 'Your Name Is Not Valid');
-			redirect(base_url("login/create_account"));
+		if($this->session->userdata('user_details')){
+			$name   = $this->input->post('name');
+			$result = $this->Login_Model->check_duplicate_admin($name);
+			if ($result) {
+				$this->session->set_flashdata('user_success', 'Your Name Is Not Valid');
+				redirect(base_url("login/create_account"));
+			}else{
+				$data = array(
+					'name'     => $this->input->post('name'),
+					'email'    => $this->input->post('email'),
+					'password' => $this->input->post('password')
+				);
+				$this->Login_Model->add_account($data);
+				$this->session->set_flashdata('user_success', 'your account created successfully! Please login.');
+				redirect(base_url("login/login_view"));
+			}
 		}else{
-			$data = array(
-				'name'     => $this->input->post('name'),
-				'email'    => $this->input->post('email'),
-				'password' => $this->input->post('password')
-			);
-			$this->Login_Model->add_account($data);
-			$this->session->set_flashdata('user_success', 'your account created successfully! Please login.');
-			redirect(base_url("login/login_view"));
+			$this->load->view("login/login_view");
 		}
 	}
 	public function view_update_admin($id){
-		$this->data['admin']=$this->Login_Model->view_admin_by_id($id);
-		$this->load->view('login/admin_update',$this->data);
+		if($this->session->userdata('user_details')){
+			$this->data['admin']=$this->Login_Model->view_admin_by_id($id);
+			$this->load->view('login/admin_update',$this->data);
+		}else{
+			$this->load->view("login/login_view");
+		}
 	}
 	public function update_admin(){
-		if($this->input->post('submit')) {
-			        $id     = $this->input->post('id');
-					$name   = $this->input->post('name');
-					$result = $this->Login_Model->check_duplicate_admin_by_id($id,$name);
-			if (!$result){
+		if($this->session->userdata('user_details')){
+			if($this->input->post('submit')) {
+				$id     = $this->input->post('id');
+				$name   = $this->input->post('name');
+				$result = $this->Login_Model->check_duplicate_admin_by_id($id,$name);
+				if (!$result){
 					$this->session->set_flashdata('user_success', 'Your Name Is Not Valid');
 					redirect(base_url("login/view_update_admin/".$id));
-			}else{
+				}else{
 					$data = array(
 						'name'     => $this->input->post('name'),
 						'email'    => $this->input->post('email'),
@@ -98,19 +114,24 @@ class Login extends CI_Controller{
 						$this->session->set_flashdata('user_success', 'Admin not updated.');
 						redirect('login/view_admins');
 					}
-
 				}
 			}
+		}else{
+			$this->load->view("login/login_view");
+		}
 	}
 
 	public function delete_admin($id){
-
-		if ($result = $this->Login_Model->admin_delete($id)){
-			$this->session->set_flashdata('user_success', 'Admin has been Deleted Successfully.');
-			redirect('login/view_admins');
+		if($this->session->userdata('user_details')){
+			if ($result = $this->Login_Model->admin_delete($id)){
+				$this->session->set_flashdata('user_success', 'Admin has been Deleted Successfully.');
+				redirect('login/view_admins');
+			}else{
+				$this->session->set_flashdata('user_success', 'Admin not Deleted.');
+				redirect('login/view_admins');
+			}
 		}else{
-			$this->session->set_flashdata('user_success', 'Admin not Deleted.');
-			redirect('login/view_admins');
+			$this->load->view("login/login_view");
 		}
 	}
 }

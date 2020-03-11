@@ -34,4 +34,31 @@ class Product_model extends CI_Model{
 		$query = $this->db->get("product_table");
 		return $query->result();
 	}
+	public function rules(){
+
+		$config = array(
+			array(
+				'field' => 'name',
+				'label' => 'Name',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'price',
+				'label' => 'Price',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'description',
+				'label' => 'Description',
+				'rules' => 'required'
+			),
+			array(
+				'field' => 'tag',
+				'label' => 'Tag',
+				'rules' => 'required'
+			)
+		);
+		return $this->form_validation->set_rules($config);
+
+	}
 }

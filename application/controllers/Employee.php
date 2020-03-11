@@ -14,57 +14,69 @@ class Employee extends CI_Controller
 	}
 	public function index()
 	{
-		$data['employers'] = $this->Employee_Model->view_employee();
-		$this->load->view('employee/employee_view', $data);
+		if($this->session->userdata('user_details')){
+			$data['employers'] = $this->Employee_Model->view_employee();
+			$this->load->view('employee/employee_view', $data);
+		}else{
+			$this->load->view('login/login_view');
+		}
 	}
 	public function create_employee(){
-		$this->load->view('employee/add_employee');
+		if($this->session->userdata('user_details')){
+			$this->load->view('employee/add_employee');
+		}else{
+			$this->load->view('login/login_view');
+		}
 	}
 
 
 
 	public function add_employee(){
-
-		$this->form_validation->set_rules('name', 'Username', array('required', 'min_length[2]','max_length[50]'));
-		$this->form_validation->set_rules('email', 'Email', array('required', 'min_length[4]','max_length[50]'));
-		$this->form_validation->set_rules('address', 'Address', array('required', 'min_length[4]','max_length[50]'));
-		$this->form_validation->set_rules('department', 'Department', array('required', 'min_length[4]','max_length[25]'));
-
-		if ($this->form_validation->run() == FALSE)
-		{
-			$this->load->view('employee/add_employee');
-		}
-		else
-		{
-			$email  = $this->input->post('email');
-			$result = $this->Employee_Model->check_duplicate_employee($email);
-			if ($result) {
-				$this->session->set_flashdata('user_success', 'Employee Email is not valid');
-				redirect(base_url("employee/create_employee"));
-			}else{
-				$data = array(
-					'name'       => $this->input->post('name'),
-					'email'      => $this->input->post('email'),
-					'address'    => $this->input->post('address'),
-					'department' => $this->input->post('department')
-				);
-				$result = $this->Employee_Model->add_employee($data);
-				if ($result){
-					$this->session->set_flashdata('user_success', 'Employee Add Successfully.');
-					redirect('employee');
+		if($this->session->userdata('user_details')){
+			$validation = $this->Employee_Model->rules();
+			if ($validation->run() == FALSE)
+			{
+				$this->load->view('employee/add_employee');
+			}
+			else
+			{
+				$email  = $this->input->post('email');
+				$result = $this->Employee_Model->check_duplicate_employee($email);
+				if ($result) {
+					$this->session->set_flashdata('user_success', 'Employee Email is not valid');
+					redirect(base_url("employee/create_employee"));
 				}else{
-					$this->session->set_flashdata('user_success', 'Employee not Added.');
-					redirect('employee');
+					$data = array(
+						'name'       => $this->input->post('name'),
+						'email'      => $this->input->post('email'),
+						'address'    => $this->input->post('address'),
+						'department' => $this->input->post('department')
+					);
+					$result = $this->Employee_Model->add_employee($data);
+					if ($result){
+						$this->session->set_flashdata('user_success', 'Employee Add Successfully.');
+						redirect('employee');
+					}else{
+						$this->session->set_flashdata('user_success', 'Employee not Added.');
+						redirect('employee');
+					}
 				}
 			}
+		}else{
+			$this->load->view('login/login_view');
 		}
 	}
 	public function view_update_employee($id){
-		$this->data['employee']=$this->Employee_Model->view_employee_by_id($id);
-		$this->load->view('employee/update_employee',$this->data);
+		if($this->session->userdata('user_details')){
+			$this->data['employee']=$this->Employee_Model->view_employee_by_id($id);
+			$this->load->view('employee/update_employee',$this->data);
+		}else{
+			$this->load->view('login/login_view');
+		}
 	}
 	public function update_employee()
 	{
+		if($this->session->userdata('user_details')){
 			if($this->input->post('submit')) {
 				$email   = $this->input->post('email');
 				$id      = $this->input->post('id');
@@ -89,19 +101,22 @@ class Employee extends CI_Controller
 					}
 				}
 			}
-
+		}else{
+			$this->load->view('login/login_view');
+		}
 	}
 
     public function delete_employee($id){
-		if ($this->Employee_Model->employee_delete($id)){
-			$this->session->set_flashdata('user_success', 'Employee Deleted Successfully.');
-			redirect('employee');
+		if($this->session->userdata('user_details')){
+			if ($this->Employee_Model->employee_delete($id)){
+				$this->session->set_flashdata('user_success', 'Employee Deleted Successfully.');
+				redirect('employee');
+			}else{
+				$this->session->set_flashdata('user_success', 'Employee not Deleted.');
+				redirect('employee');
+			}
 		}else{
-			$this->session->set_flashdata('user_success', 'Employee not Deleted.');
-			redirect('employee');
+			$this->load->view('login/login_view');
 		}
-	}
-	public function view_ajax_employee(){
-		$this->load->view('ajax_employee/ajax_employee_view');
 	}
 }
