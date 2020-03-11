@@ -14,7 +14,7 @@ class Login extends CI_Controller{
 		if($this->session->userdata('user_details')){
 			redirect(base_url('employee'));
 		}else{
-			$this->load->view('login/login_view');
+			$this->load->view("login/login_view");
 		}
 	}
 	public function login_action(){
@@ -51,19 +51,15 @@ class Login extends CI_Controller{
 			$data['admins'] = $this->Login_Model->view_admins();
 			$this->load->view('login/admins_view', $data);
 		}else{
-			$this->load->view("login/login_view");
+			redirect(base_url('login'));
 		}
 	}
 	public function create_account(){
-		if($this->session->userdata('user_details')){
+
 			$this->load->view('login/account_create');
-		}else{
-			$this->load->view("login/login_view");
-		}
 	}
 
 	public function add_account(){
-		if($this->session->userdata('user_details')){
 			$name   = $this->input->post('name');
 			$result = $this->Login_Model->check_duplicate_admin($name);
 			if ($result) {
@@ -79,16 +75,13 @@ class Login extends CI_Controller{
 				$this->session->set_flashdata('user_success', 'your account created successfully! Please login.');
 				redirect(base_url("login/login_view"));
 			}
-		}else{
-			$this->load->view("login/login_view");
-		}
 	}
 	public function view_update_admin($id){
 		if($this->session->userdata('user_details')){
 			$this->data['admin']=$this->Login_Model->view_admin_by_id($id);
 			$this->load->view('login/admin_update',$this->data);
 		}else{
-			$this->load->view("login/login_view");
+			redirect(base_url('login'));
 		}
 	}
 	public function update_admin(){
@@ -117,7 +110,7 @@ class Login extends CI_Controller{
 				}
 			}
 		}else{
-			$this->load->view("login/login_view");
+			redirect(base_url('login'));
 		}
 	}
 
@@ -131,7 +124,7 @@ class Login extends CI_Controller{
 				redirect('login/view_admins');
 			}
 		}else{
-			$this->load->view("login/login_view");
+			redirect(base_url("login/login_view"));
 		}
 	}
 }

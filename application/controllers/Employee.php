@@ -18,14 +18,14 @@ class Employee extends CI_Controller
 			$data['employers'] = $this->Employee_Model->view_employee();
 			$this->load->view('employee/employee_view', $data);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function create_employee(){
 		if($this->session->userdata('user_details')){
 			$this->load->view('employee/add_employee');
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 
@@ -63,7 +63,7 @@ class Employee extends CI_Controller
 				}
 			}
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function view_update_employee($id){
@@ -71,7 +71,7 @@ class Employee extends CI_Controller
 			$this->data['employee']=$this->Employee_Model->view_employee_by_id($id);
 			$this->load->view('employee/update_employee',$this->data);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function update_employee()
@@ -102,7 +102,7 @@ class Employee extends CI_Controller
 				}
 			}
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 
@@ -116,7 +116,7 @@ class Employee extends CI_Controller
 				redirect('employee');
 			}
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 }

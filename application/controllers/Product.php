@@ -16,14 +16,14 @@ class Product extends CI_Controller{
 			$data['products'] = $this->Product_model->product_view();
 			$this->load->view('product/product_view', $data);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function product_create(){
 		if($this->session->userdata('user_details')) {
 			$this->load->view('product/product_add');
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	//Product add by codelgniter.........
@@ -61,7 +61,7 @@ class Product extends CI_Controller{
 			$Result = $this->Product_model->view_product_by_id($id);
 			echo json_encode($Result);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function update(){
@@ -76,7 +76,7 @@ class Product extends CI_Controller{
 			$result = $this->Product_model->update_product($id, $data);
 			echo json_encode($result);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 
 	}
@@ -86,7 +86,7 @@ class Product extends CI_Controller{
 			$result = $this->Product_model->product_delete($id);
 			echo json_encode($result);
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	public function add_product(){
@@ -105,7 +105,7 @@ class Product extends CI_Controller{
 				echo json_encode($result);
 			}
 		}else{
-			$this->load->view('login/login_view');
+			redirect(base_url('login'));
 		}
 	}
 	//This is Using Ajax..Controller......
