@@ -30,4 +30,8 @@ class Product_model extends CI_Model{
 		$result = $this->db->get('product_table');
 		return $result->num_rows()>0;
 	}
+	public function show_all_products(){
+		$query = $this->db->get("product_table");
+		return $query->result();
+	}
 }

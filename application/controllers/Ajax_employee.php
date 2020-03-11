@@ -5,7 +5,6 @@ class Ajax_employee extends CI_Controller{
 		parent::__construct();
 		$this->load->database();
 		$this->load->helper('form');
-		$this->load->library('session');
 		$this->load->model('Ajax_employee_Model');
 	}
 	public function index(){
@@ -23,12 +22,7 @@ class Ajax_employee extends CI_Controller{
 			'address'=>$this->input->post('address'),
 		);
 		$result = $this->Ajax_employee_Model->add_employee($data);
-		$msg['success'] = false;
-		$msg['type']    = 'add';
-		if($result){
-			$msg['success'] = true;
-		}
-		echo json_encode($msg);
+		echo json_encode($result);
 	}
 	public function edit_employee(){
 		$id     = $this->input->get('id');

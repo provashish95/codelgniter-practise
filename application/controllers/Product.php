@@ -39,10 +39,42 @@ class Product extends CI_Controller{
 			}
 		}
 	}
-	public function view_update_product($id){
-		$this->data['product']=$this->Product_model->view_product_by_id($id);
-		$this->load->view('product/product_update',$this->data);
+	//This is Using Ajax...Controller.....
+	//This is Using Ajax..Controller......
+	public function view_update_product(){
+		$id = $this->input->get('id');
+		$Result = $this->Product_model->view_product_by_id($id);
+		echo json_encode($Result);
 	}
+	public function update(){
+		$id = $this->input->post('id');
+		$data = array(
+			'name'        => $this->input->post('name'),
+			'price'       => $this->input->post('price'),
+			'description' => $this->input->post('description'),
+			'tag'         => $this->input->post('tag')
+		);
+		$result = $this->Product_model->update_product($id, $data);
+		echo json_encode($result);
+	}
+	public function delete(){
+		$id = $this->input->post('id');
+		$result = $this->Product_model->product_delete($id);
+		echo json_encode($result);
+	}
+	public function add_product(){
+		$data = array(
+			'name'        => $this->input->post('name'),
+			'price'       => $this->input->post('price'),
+			'description' => $this->input->post('description'),
+			'tag'         => $this->input->post('tag')
+		);
+		$result = $this->Product_model->product_add($data);
+		echo json_encode($result);
+	}
+	//This is Using Ajax..Controller......
+	//This is Using Ajax..Controller......
+
 	public function update_product()
 	{
 		if($this->input->post('submit'))
@@ -80,5 +112,4 @@ class Product extends CI_Controller{
 			redirect('product');
 		}
 	}
-
 }

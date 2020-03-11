@@ -4,11 +4,6 @@
 	<title>User Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<style>
 		.footer {
 			position: fixed;
@@ -25,6 +20,12 @@
 			left: 10px;
 		}
 	</style>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="<?php echo base_url(); ?>asset/jquery-3.4.1.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</head>
 </head>
 <body>
 
@@ -60,28 +61,28 @@
 							<?php if ($this->session->flashdata('user_success')) { ?>
 								<div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 							<?php } ?>
-							<form action="<?php echo base_url('product/product_add');?>" method="post">
+
 								<div class="form-group">
 									<label for="exampleInputEmail1">Product Name</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
+									<input type="text" class="form-control" id="name" name="name" aria-describedby="emailHelp" >
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Product Price</label>
-									<input type="number" class="form-control" name="price"  required>
+									<input type="number" class="form-control" id="price" name="price"  >
 								</div>
 								<div class="form-group">
 									<label for="exampleFormControlTextarea1">Description</label>
-									<textarea class="form-control" name="description" rows="3"></textarea>
+									<textarea class="form-control" id="description" name="description" rows="3"></textarea>
 								</div>
 
 								<div class="form-group">
 									<label for="exampleInputPassword1">Tag</label>
-									<input type="text" class="form-control" name="tag"  required>
+									<input type="text" class="form-control" id="tag" name="tag" >
 								</div>
 
-								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
+								<button type="submit" class="btn btn-primary" value="submit" name="submit" id="btn_save">Submit</button>
 								<a type="submit" class="btn btn-primary" href="<?= base_url('product') ?>" name="submit">Cancel</a>
-							</form>
+
 
 						</div>
 						<div class="col-md-2">
@@ -102,6 +103,30 @@
 		</div>
 	</div>
 </footer>
-</div>
+<script type="text/javascript">
+	//add product......
+	$('#btn_save').on('click', function (){
+		var name        = $('#name').val();
+		var price       = $('#price').val();
+		var description = $('#description').val();
+		var tag         = $('#tag').val();
+		$.ajax({
+			type : "POST",
+			url  : "<?= base_url('product/add_product') ?>",
+			dataType : "JSON",
+			data : {name:name , price:price, description:description, tag:tag},
+			success: function(data){
+				$('[name="name"]')       .val("");
+				$('[name="price"]')      .val("");
+				$('[name="description"]').val("");
+				$('[name="tag"]')        .val("");
+				top.location.href="<?= base_url('product')?>";
+			}
+
+		});
+	});
+	//add product......
+</script>
+
 </body>
 </html>

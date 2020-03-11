@@ -9,6 +9,8 @@ class Employee extends CI_Controller
 		$this->load->model('Login_Model');
 		$this->load->helper('form');
 		$this->load->library('session');
+		$this->load->library('form_validation');
+		$this->load->helper(array('form', 'url'));
 	}
 	public function index()
 	{
@@ -18,26 +20,42 @@ class Employee extends CI_Controller
 	public function create_employee(){
 		$this->load->view('employee/add_employee');
 	}
+
+
+
 	public function add_employee(){
+
+		$this->form_validation->set_rules('name', 'Username', array('required', 'min_length[2]','max_length[50]'));
+		$this->form_validation->set_rules('email', 'Email', array('required', 'min_length[4]','max_length[50]'));
+		$this->form_validation->set_rules('address', 'Address', array('required', 'min_length[4]','max_length[50]'));
+		$this->form_validation->set_rules('department', 'Department', array('required', 'min_length[4]','max_length[25]'));
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->load->view('employee/add_employee');
+		}
+		else
+		{
 			$email  = $this->input->post('email');
-		    $result = $this->Employee_Model->check_duplicate_employee($email);
-		if ($result) {
-			$this->session->set_flashdata('user_success', 'Employee Email is not valid');
-			redirect(base_url("employee/create_employee"));
-		}else{
-			$data = array(
-				'name'       => $this->input->post('name'),
-				'email'      => $this->input->post('email'),
-				'address'    => $this->input->post('address'),
-				'department' => $this->input->post('department')
-			);
-			$result = $this->Employee_Model->add_employee($data);
-			if ($result){
-				$this->session->set_flashdata('user_success', 'Employee Add Successfully.');
-				redirect('employee');
+			$result = $this->Employee_Model->check_duplicate_employee($email);
+			if ($result) {
+				$this->session->set_flashdata('user_success', 'Employee Email is not valid');
+				redirect(base_url("employee/create_employee"));
 			}else{
-				$this->session->set_flashdata('user_success', 'Employee not Added.');
-				redirect('employee');
+				$data = array(
+					'name'       => $this->input->post('name'),
+					'email'      => $this->input->post('email'),
+					'address'    => $this->input->post('address'),
+					'department' => $this->input->post('department')
+				);
+				$result = $this->Employee_Model->add_employee($data);
+				if ($result){
+					$this->session->set_flashdata('user_success', 'Employee Add Successfully.');
+					redirect('employee');
+				}else{
+					$this->session->set_flashdata('user_success', 'Employee not Added.');
+					redirect('employee');
+				}
 			}
 		}
 	}

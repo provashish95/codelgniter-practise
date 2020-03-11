@@ -60,22 +60,29 @@
 							   <div class="alert alert-success" style="width: 41%!important;"> <?= $this->session->flashdata('user_success') ?> </div>
 						   <?php } ?>
 
+
+
+
 					   <form action="<?= base_url('employee/add_employee') ?>" method="post">
 						   <div class="form-group">
 							   <label for="exampleInputEmail1">Name</label>
-							   <input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
+							   <input type="text" class="form-control" id="exampleInputEmail1" name="name" placeholder="Enter your Name"  aria-describedby="emailHelp" required>
+							   <?php echo form_error('name', '<span style="color: red" class="form_error">', '</span>'); ?>
 						   </div>
 						   <div class="form-group">
 							   <label for="exampleInputPassword1">Email</label>
-							   <input type="email" class="form-control" name="email" id="exampleInputPassword1" required>
+							   <input type="email" class="form-control" name="email" id="exampleInputPassword1"  placeholder="Enter your Email" required>
+							   <?php echo form_error('email', '<span style="color: red" class="form_error">', '</span>'); ?>
 						   </div>
 						   <div class="form-group">
 							   <label for="exampleInputPassword1">Address</label>
-							   <input type="text" class="form-control" name="address" id="exampleInputPassword1" required>
+							   <input type="text" class="form-control" name="address" id="exampleInputPassword1" placeholder="Enter your Address" required >
+							   <?php echo form_error('address', '<span style="color: red" class="form_error">', '</span>'); ?>
 						   </div>
 						   <div class="form-group">
 							   <label for="exampleInputPassword1">Department</label>
-							   <input type="text" class="form-control" name="department" id="exampleInputPassword1" required>
+							   <input type="text" class="form-control" name="department" id="exampleInputPassword1" placeholder="Enter your Department" required>
+							   <?php echo form_error('department', '<span style="color: red" class="form_error">', '</span>'); ?>
 						   </div>
 						   <button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 					   </form>
