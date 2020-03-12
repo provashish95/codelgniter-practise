@@ -29,8 +29,6 @@ class Employee extends CI_Controller
 		}
 	}
 
-
-
 	public function add_employee(){
 		if($this->session->userdata('user_details')){
 			$validation = $this->Employee_Model->rules();

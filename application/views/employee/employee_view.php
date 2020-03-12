@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Employee</title>
+	<title>Employers</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -78,10 +78,10 @@
 								foreach($employers as $employee) {  ?>
 								<tr>
 									<th scope="row"><?php echo $employee->id ;?></th>
-									<td><?php echo $employee->name ;?></td>
-									<td><?php echo $employee->email ;?></td>
-									<td><?php echo $employee->address ;?></td>
-									<td><?php echo $employee->department ;?></td>
+									<td><?= $employee->name ?></td>
+									<td><?= $employee->email ?></td>
+									<td><?= $employee->address ?></td>
+									<td><?= $employee->department ?></td>
 									<td><a href='<?=  base_url('employee/view_update_employee/'.$employee->id) ?>'>update</a></td>
 									<td><a href='<?= base_url('employee/delete_employee/'.$employee->id) ?>'>delete</a></td>
 								</tr>

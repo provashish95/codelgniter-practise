@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Bootstrap Example</title>
+	<title>Products</title>
 	<meta charset="utf-8">
 	<style>
 		.footer {

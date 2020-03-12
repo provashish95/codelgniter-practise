@@ -78,7 +78,6 @@ class Product extends CI_Controller{
 		}else{
 			redirect(base_url('login'));
 		}
-
 	}
 	public function delete(){
 		if($this->session->userdata('user_details')){

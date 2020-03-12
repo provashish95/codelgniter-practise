@@ -14,7 +14,8 @@ class Login extends CI_Controller{
 		if($this->session->userdata('user_details')){
 			redirect(base_url('employee'));
 		}else{
-			$this->load->view("login/login_view");
+			//$this->load->view("login/login_view");
+			redirect('login/login_view');
 		}
 	}
 	public function login_action(){
@@ -39,7 +40,7 @@ class Login extends CI_Controller{
 			redirect(base_url("login/login_view"));
 
 		}else{
-			redirect(base_url("login/login_view"));
+			redirect(base_url("login"));
 		}
 	}
 

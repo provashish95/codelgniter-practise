@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>User Login</title>
+	<title>Create Account</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -65,15 +65,15 @@
 							<form action="<?= base_url('login/add_account') ?>" method="post">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Name</label>
-									<input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" required>
+									<input type="text" class="form-control" id="exampleInputEmail1" name="name" aria-describedby="emailHelp" placeholder="Enter Your Name" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Email</label>
-									<input type="email" class="form-control" name="email" id="exampleInputPassword1" required>
+									<input type="email" class="form-control" name="email" id="exampleInputPassword1" placeholder="Enter Your Email" required>
 								</div>
 								<div class="form-group">
 									<label for="exampleInputPassword1">Password</label>
-									<input type="password" class="form-control" name="password" id="exampleInputPassword1" required>
+									<input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Enter Your Password" required>
 								</div>
 								<button type="submit" class="btn btn-primary" value="submit" name="submit">Submit</button>
 							</form>
